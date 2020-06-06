@@ -20,5 +20,4 @@ module.exports = {
 //   else console.log('users: ', res)
 // });
 
-pool.connect()
-    .then((res) => console.log('CONNECTED TO DB ', res));
+pool.connect().then((res) => console.log('CONNECTED TO DB ', res));
