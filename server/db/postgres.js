@@ -14,11 +14,3 @@ module.exports = {
     return pool.query(text, params, callback);
   },
 }
-
-// pool.query('SELECT * FROM users', [1], (err, res) =>{
-//   if(err) throw err;
-//   else console.log('users: ', res)
-// });
-
-pool.connect()
-    .then((res) => console.log('CONNECTED TO DB ', res));
