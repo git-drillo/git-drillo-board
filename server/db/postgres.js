@@ -1,7 +1,7 @@
 const { Pool } = require("pg");
 require("dotenv").config();
 
-const PG_URI = `postgres://dkmfskhk:wazwc7rMvBgPiV2it0xx5P5Vg_15QgaQ@ruby.db.elephantsql.com:5432/dkmfskhk`
+const PG_URI = process.env.PG_URI;
 
 const pool = new Pool({
     connectionString: PG_URI,
@@ -14,3 +14,11 @@ module.exports = {
     return pool.query(text, params, callback);
   },
 }
+
+// pool.query('SELECT * FROM users', [1], (err, res) =>{
+//   if(err) throw err;
+//   else console.log('users: ', res)
+// });
+
+pool.connect()
+    .then((res) => console.log('CONNECTED TO DB ', res));
