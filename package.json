@@ -4,7 +4,9 @@
   "description": "A tool for developers to integrate SCRUM into the production pipeline",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "NODE_ENV=production nodemon ./client/index.js",
+    "build": "NODE_ENV=production webpack",
+    "dev": "NODE_ENV=development concurrently \"webpack-dev-server\" \"nodemon ./server/server.js\""
   },
   "repository": {
     "type": "git",
@@ -36,8 +38,14 @@
     "@babel/preset-env": "^7.10.2",
     "@babel/preset-react": "^7.10.1",
     "babel-loader": "^8.1.0",
+    "concurrently": "^5.2.0",
     "cross-env": "^7.0.2",
+    "css-loader": "^3.5.3",
+    "file-loader": "^6.0.0",
+    "image-webpack-loader": "^6.0.0",
+    "imagemin-webp": "^6.0.0",
     "nodemon": "^2.0.4",
+    "style-loader": "^1.2.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.11.0"
