@@ -15,5 +15,28 @@
   "bugs": {
     "url": "https://github.com/git-drillo/git-drillo-board/issues"
   },
-  "homepage": "https://github.com/git-drillo/git-drillo-board#readme"
+  "homepage": "https://github.com/git-drillo/git-drillo-board#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "passport": "^0.4.1",
+    "passport-github2": "^0.1.12",
+    "pg": "^8.2.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "babel-loader": "^8.1.0",
+    "cross-env": "^7.0.2",
+    "nodemon": "^2.0.4",
+    "webpack": "^4.43.0"
+  }
 }
