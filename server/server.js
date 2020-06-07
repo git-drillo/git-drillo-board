@@ -24,6 +24,8 @@ app.use('/api', apiRoute);
 if (process.env.NODE_ENV === 'production') {
   app.use('/dist', express.static(path.resolve(__dirname, '../client/dist')));
 
+  app.use('/assets', express.static(path.join(__dirname, '../client/assets')));
+
   // Home endpoint
   app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client/index.html'));

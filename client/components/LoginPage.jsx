@@ -6,20 +6,19 @@
  */
 
 import React from 'react';
+// import githubLogo from '../assets/githublogo.png';
 
 const LoginPage = props => (
   <div id="LoginPage">
-      <div id="imgWrap">
-      <a href='/auth/github'>
-        <img src='./assets/githublogo.png' className='gitLogo'></img>
+    <div id="imgWrap">
+      <a href="/auth/github">
+        <img src='../assets/githublogo.png' className="gitLogo"></img>
       </a>
-      </div>
+    </div>
   </div>
 );
 
 export default LoginPage;
-
-
 
 // const loginState = {
 //   loginRedirect: function () { /* go to landing page AFTER github auth redirect */ },
@@ -61,7 +60,6 @@ export default LoginPage;
 
 //   createNewTask: function() {},
 // }
-
 
 // // toDo = [
 // //   { task: 'Create login button',

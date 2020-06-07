@@ -21,20 +21,21 @@ class App extends Component {
     return (
       <div>
         <main>
-          {/* <Switch> */}
-          {/* <Route
+          <Switch>
+            {/* <Route
               exact
               path='/'
               component={() => <LogInPage />}
             /> */}
-          {/* <Route
+            {/* <Route
               exact
               path='/dashboard'
               component={() => <LandingPageContainer />}
             /> */}
-          <Route exact path="/" component={()=>  <LoginPage />} />
-          <Route exact path="/dashboard" component={() => <BoardPageContainer />} />
-          {/* </Switch> */}
+            <Route exact path="/" component={() => <LoginPage />} />
+            {/* <Route exact path="/dashboard" component={() => <BoardPageContainer />} /> */}
+            <Route exact path="/dashboard"><BoardPageContainer/></Route>
+          </Switch>
         </main>
       </div>
     );

@@ -1,5 +1,5 @@
-const router = require("express").Router();
-const passport = require("passport");
+const router = require('express').Router();
+const passport = require('passport');
 
 //github login
 
@@ -7,14 +7,14 @@ const passport = require("passport");
 // (after requiring the passport-setup.js in the server.js and adding the appropriate /auth route)
 
 router.get(
-  "/github",
-  passport.authenticate("github", {
-    scope: ["user:email"],
+  '/github',
+  passport.authenticate('github', {
+    scope: ['user:email'],
   })
 );
 
-router.get("/fail", (req, res) => {
-  res.status(200).send("FAILURE TO AUTHENTICATE");
+router.get('/fail', (req, res) => {
+  res.status(200).send('FAILURE TO AUTHENTICATE');
 });
 
 //callback route for github to redirect (from passport-setup.js)
@@ -24,16 +24,16 @@ router.get("/fail", (req, res) => {
 // });
 
 router.get(
-  "/github/callback",
-  passport.authenticate("github", {
+  '/github/callback',
+  passport.authenticate('github', {
     //if failure to authenticate:
     //placeholder
-    failureRedirect: "/fail",
+    failureRedirect: '/fail',
   }),
   (req, res) => {
     //if successful authentication:
-    console.log("SUCCESSFUL AUTHENTICATION");
-    res.redirect("/dashboard");
+    console.log('SUCCESSFUL AUTHENTICATION');
+    res.redirect('/dashboard');
   }
 );
 
