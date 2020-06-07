@@ -30,6 +30,14 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
+app.get('/projectboard/:project_name', (req, res) => {
+  res.status(200).send('On project board page');
+});
+
+app.get('/dashboard', (req, res) => {
+  res.status(200).send('On dashboard page');
+});
+
 // Global Error handler
 app.use((err, req, res, next) => {
   // Set up default error
