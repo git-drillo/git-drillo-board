@@ -1,5 +1,8 @@
 const express = require('express');
 const path = require('path');
+const passportSetup = require('./config/passport-setup');
+const passport = require('passport');
+
 require('dotenv/config');
 
 const app = express();
@@ -11,6 +14,7 @@ const apiRoute = require('./routes/api-route');
 // Body Parsing Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(passport.initialize());
 
 // Use routes
 app.use('/auth', authRoute);
@@ -20,11 +24,21 @@ app.use('/api', apiRoute);
 if (process.env.NODE_ENV === 'production') {
   app.use('/dist', express.static(path.resolve(__dirname, '../client/dist')));
 
+  app.use('/assets', express.static(path.join(__dirname, '../client/assets')));
+
   // Home endpoint
   app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client/index.html'));
   });
 }
+
+app.get('/projectboard/:project_name', (req, res) => {
+  res.status(200).send('On project board page');
+});
+
+app.get('/dashboard', (req, res) => {
+  res.status(200).send('On dashboard page');
+});
 
 // Global Error handler
 app.use((err, req, res, next) => {

@@ -8,7 +8,7 @@ require('dotenv/config')
  * @access  Public
  */
 router.get('/', (req, res) => {
-  res.send('Hitting api GET endpoint!');
+  res.sendStatus(200);
 });
 
 /**

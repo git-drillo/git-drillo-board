@@ -10,7 +10,7 @@ import React from 'react';
 const Header = props => (
   <div className="Header">
     <h1> {props.header.title} </h1>
-    <button onClick={props.dummyClick}> click me </button>
+    <button onClick={props.returnToProjectsBoard}> Return to Projects Board </button>
   </div>
 );
 
