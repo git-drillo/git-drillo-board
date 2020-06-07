@@ -25,12 +25,14 @@ class LandingPageContainer extends Component {
         super(props);
     }
 
-    render () {
-        return(
+    render() {
+        return (
             <div id="LandingContainer">
-                <Header/>
-                 <LandingPage/>
+                <Header />
+                <LandingPage />
             </div>
         );
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(LandingPageContainer);

@@ -5,27 +5,20 @@
  * @description presentation component that renders...
 */
 
-import React, { Component } from "react";
+import React from "react";
 
 // Landing Page displays our button to add a new project and boxes which link to a user's existing repositories
 // LandingPage.jsx
 
-class LandingPage extends Component {
-    constructor(props) {
-        super(props);
+const LandingPage = (props) => (
+    <div id="LandingPage">
+        <button>+</button>
 
-    }
-    render() {
-        return (
-            <div id="LandingPage">
-                <button>+</button>
+    </div>
+)
 
-            </div>
-        )
 
-    }
-}
-
+export default LandingPage;
     // drop down button
       // links to modal with drop down for repository drop down
 

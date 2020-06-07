@@ -7,6 +7,12 @@
 
 import React from 'react';
 
-// render out the application title
-  // h1 of git-drillo
-  // 
+
+const Header = (props) => {
+  <div className = "Header">
+    <h1> {props.header.title} </h1>
+    <button onClick={props.fakeAFClick}> click me </button>
+  </div>
+}
+
+export default Header;

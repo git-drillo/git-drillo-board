@@ -6,29 +6,70 @@
 */
 
 import React, { Component } from "react";
-import Header from '../components/Header'
+import Header from '../components/Header.jsx'
+import Category from "../components/Category.jsx";
 
-const mapStateToProps = state => {
-  // provide pertinent state here
-}
+// const mapStateToProps = state => {
+//   // provide pertinent state here
+  
+// }
 
-const mapDispatchToProps = dispatch => {
-  // create functions that will dispatch action creators
-}
+// const mapDispatchToProps = dispatch => {
+//   // create functions that will dispatch action creators
+// }
 
 class BoardPageContainer extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      header: {
+        title: 'Git Drillo Board'
+      },
+      toDo: ['fizz', 'buzz'],
+      inProgress: [],
+      pending: [],
+      done: [],
+    }
+    dummyClick = this.dummyClick.bind(this);
+  }
+
+  dummyClick() {
+    console.log('bruh....')
   }
 
   render() {
     return(
-      <div className="BoardPageContainer">
-        <Header />
-
+      <div className = 'BoardPageContainer'>
+        <Header 
+          header = { this.state.header }
+          dummyClick = { dummyClick }
+          array = { }
+        />
+        <Category
+          categoryName = 'To Do'
+          dummyClick = { this.dummyClick }
+          array = { this.state.toDo }
+        />
+        <Category
+          categoryName = 'In Progress'
+          dummyClick = { this.dummyClick }
+          array = { this.state.toDo }
+        />
+        <Category
+          categoryName = 'Done'
+          dummyClick = { this.dummyClick }
+          array = { this.state.done }
+        />
+        <Category
+          categoryName = 'Pending'
+          dummyClick = { this.dummyClick }
+          array = { this.state.pending }
+        />
       </div>
     )
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BoardPageContainer);
+// export default connect(mapStateToProps, mapDispatchToProps)(BoardPageContainer);
+
+export default BoardPageContainer

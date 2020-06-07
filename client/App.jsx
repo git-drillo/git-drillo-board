@@ -6,29 +6,33 @@
 */
 
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
-import BoardPageContainer from './containers/BoardPageContainer';
-import LandingPageContainer from './containers/LandingPageContainer';
-// import Header from './components/Header';
+import BoardPageContainer from './containers/BoardPageContainer.jsx';
+import LandingPageContainer from './containers/LandingPageContainer.jsx';
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
   }
   render() {
-    return(
+    return (
       <div>
         <Switch>
+          {/* <Route
+            exact
+            path='/'
+            component={() => <LogInPage />}
+          /> */}
           <Route
             exact
-            path = '/'
-            component = { () => <LandingPageContainer /> }
+            path='/dashboard'
+            component={() => <LandingPageContainer />}
           />
           <Route
             exact
-            path = '/project/:id'
-            component = { () => <BoardPageContainer /> }
+            path='/'
+            component={() => <BoardPageContainer />}
           />
         </Switch>
       </div>
@@ -36,13 +40,15 @@ class App extends Component {
   }
 }
 
+export default App;
+
 
 // app
   // Header.jsx
 
   ///// if just sign in display landing page /////
 
-  
+
 
   ///// if project then display board container /////
 
