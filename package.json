@@ -6,7 +6,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production nodemon ./server/server.js",
     "build": "cross-env NODE_ENV=production webpack",
-    "dev": "cross-env NODE_ENV=development concurrently \"webpack-dev-server --open --hot --inline --progress --colors --watch --contentbase ./\" \"nodemon ./server/server.js\""
+    "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server\" \"nodemon ./server/server.js\""
   },
   "repository": {
     "type": "git",
