@@ -41,7 +41,6 @@ router.get('/projects/:id', async (req, res, next) => {
     return next({ msg });
   }
 
-  // res.send(`Getting projects of user with id #${req.params.id}`);
 });
 
 module.exports = router;

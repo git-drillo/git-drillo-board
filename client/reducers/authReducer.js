@@ -1,13 +1,10 @@
-import axios from 'axios';
+import {} from './types';
 
-export function login() {
-  return function (dispatch) {
-    // Database Authentication
-  }
-}
+const initialState = {};
 
-export function logout() {
-  return function (dispatch) {
-    // Database Authentication
+export default function authReducer(state = initialState, action) {
+  switch (action.type) {
+    default:
+      return state;
   }
 }
