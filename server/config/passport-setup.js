@@ -5,6 +5,8 @@ const GithubStrategy = require('passport-github2');
 
 const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET }  = process.env;
 
+const db = require('../db/postgres.js');
+
 console.log('INSIDE passport-setup.js')
 passport.use(
     new GithubStrategy({
@@ -19,7 +21,28 @@ passport.use(
             //passport callback fn
         //after getting successully authenticated - run this callback function
         //routes to 'authenticated page' w/ correct user information
-            console.log('PASSPORT CALLBACK FIRED', profile)
+            console.log('PASSPORT CALLBACK FIRED', profile.username)
+
+            const { username } = profile;
+
+            const insert = `INSERT INTO users (_id, githandle) VALUES (DEFAULT, $1) RETURNING *`
+
+            db.query(`SELECT * FROM users WHERE githandle='${username}'`)
+                .then(data =>{
+                    console.log(data.rows)
+                    if(data.rows.length > 0){
+                        done(null, user);
+                    } else {
+                        db.query(insert, [username])
+                        .then(user => {
+                            done(null, users.row[0])
+                        });
+                    }
+                })
+                .catch(err => console.log(err))
+
+            // 'INSERT INTO users (_id, githandle) values (DEFAULT, '
+
             // return done(null, false);
  //HAVE TO CHANGE 'User'           
             //User -> if exists, return finalized message and redirect
@@ -29,3 +52,5 @@ passport.use(
             // });
     }
 ));
+
+// http://localhost:8080/auth/github/callback?code=ef27d84d1d5cbf908bb6

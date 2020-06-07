@@ -20,7 +20,7 @@ app.use('/auth', authRoute);
 app.use('/api', apiRoute);
 
 // Serve static files in production mode
-if (process.env.PORT === 'production') {
+if (process.env.NODE_ENV === 'production') {
   app.use('/dist', express.static(path.resolve(__dirname, '../dist')));
 
   // Home endpoint
