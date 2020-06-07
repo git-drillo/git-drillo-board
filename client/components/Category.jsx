@@ -12,13 +12,13 @@ function Category(props) {
   const renderedTasksArray = [];
   for (let i = 0; i < props.array.length; i++) {
     let task = props.array[i];
-    renderedTasksArray.push(<Task key={i} taskInformation={task} />);
+    renderedTasksArray.push(<Task key={i} taskInformation={task} taskButtonEdit={props.taskButtonEdit}/>);
   }
   return (
     <div className="categories">
       <h4>{props.categoryName}</h4>
       {renderedTasksArray}
-      <button onClick={props.dummyClick}> dummy category button </button>
+      <button onClick={props.createNewTask}> dummy category button </button>
     </div>
   );
 }

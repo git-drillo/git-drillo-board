@@ -9,7 +9,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './git-drillo.css';
 
-import BoardPageContainer from './containers/BoardPageContainer.jsx';
+import ProjectPageContainer from './containers/ProjectPageContainer.jsx';
 // import LandingPageContainer from './containers/LandingPageContainer.jsx';
 
 class App extends Component {
@@ -23,15 +23,11 @@ class App extends Component {
           {/* <Switch> */}
           {/* <Route
               exact
-              path='/'
+              path='/board'
               component={() => <LogInPage />}
             /> */}
-          {/* <Route
-              exact
-              path='/dashboard'
-              component={() => <LandingPageContainer />}
-            /> */}
-          <Route exact path="/" component={() => <BoardPageContainer />} />
+          <Route exact path='/dashboard' component={() => <LandingPageContainer />} />
+          <Route exact path='/projectBoard' component={() => <ProjectPageContainer />} />
           {/* </Switch> */}
         </main>
       </div>
@@ -41,33 +37,61 @@ class App extends Component {
 
 export default App;
 
-// app
-// Header.jsx
 
-///// if just sign in display landing page /////
+// const loginState = {
+//   loginRedirect: function () { /* go to landing page AFTER github auth redirect */ },
+// }
 
-///// if project then display board container /////
+// const landingPageState  = {
+//   userId: String, /* this should be the log in cookie code gathered from oauth */
+//   owner: String, /* name of the person from the oauth cookie */
 
-// BoardPage.jsx
-// params pending, to do, done
-// Categories.jsx
+//   projects = [
+//     {
+//       projectName: '',
+//       project_id: '',
+//       userIsOwner: true,
+//     }
+//   ],
 
-// params tasks
-// Tasks.jsx
+//   onMount: function() { /* fetch request to gather all the information in db that matches the userId */ },
 
-// <BoardPageContainer>
-//     <Category id="toDo" />
-//     <Category id="inProgress" />
-//     <Category id="inProgress" />
-// </BoardPageContainer>
+//   createNewProjectBoard: function() { /* create funcitonality */},
+//   redirectToProject: function(projectId) { /* go to boardPage displaying every category and task in  */},
 
-// class Category {
-//  for () {
+//   // render ( /* render all project. render those that are owned differently */),
+// }
 
-//  }
-//         <Task
-//           name = jose
-//           person =
-//           id =
-//         />
-//       render array
+// const boardPageState = {
+//   userId: {
+//     repoUrl: '',
+//     owner_id: '',
+//     toDo: [],
+//     inProgress: [],
+//   },
+//   userId: {
+//     repoUrl: '',
+//     owner_id: '',
+//     toDo: [],
+//     inProgress: [],
+//   },
+
+//   createNewTask: function() {},
+// }
+
+
+// // toDo = [
+// //   { task: 'Create login button',
+// //     tag: 'frontend',
+// //     assignedDev: 'none',
+// //     userId: 'string',
+// //     commitMessage: '',
+// //     commitUrl: '',
+// //   },
+// // ]
+// // inProgress = [
+// //   { task: 'Create login button', tag: 'frontend', assignedDev: 'none' },
+// //   { task: 'create basic project page', tag: 'frontend', assignedDev: 'none' },
+// //   { task: 'set up button to make new project', tag: 'fullstack', assignedDev: 'none' },
+// //   { task: 'set up button to make new project', tag: 'fullstack', assignedDev: 'none' },
+// // ]
