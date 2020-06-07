@@ -7,9 +7,10 @@
 
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import './git-drillo.css';
 
 import BoardPageContainer from './containers/BoardPageContainer.jsx';
-import LandingPageContainer from './containers/LandingPageContainer.jsx';
+// import LandingPageContainer from './containers/LandingPageContainer.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -18,23 +19,25 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Switch>
+        <main>
+          {/* <Switch> */}
           {/* <Route
-            exact
-            path='/'
-            component={() => <LogInPage />}
-          /> */}
-          <Route
-            exact
-            path='/dashboard'
-            component={() => <LandingPageContainer />}
-          />
+              exact
+              path='/'
+              component={() => <LogInPage />}
+            /> */}
+          {/* <Route
+              exact
+              path='/dashboard'
+              component={() => <LandingPageContainer />}
+            /> */}
           <Route
             exact
             path='/'
             component={() => <BoardPageContainer />}
           />
-        </Switch>
+          {/* </Switch> */}
+        </main>
       </div>
     )
   }

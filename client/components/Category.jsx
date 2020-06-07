@@ -6,22 +6,24 @@
 */
 
 import React from 'react';
+import Task from './Task.jsx';
 
 function Category(props) {
-  const tasksArray = props.array;
-  for (let i = 0; i < 5; i++){
-    tasksArray.push(
-      <div>
-  
-      </div>
-    )
-  
-    return (
-      <div>
-        { tasksArray }
-      </div>
+  const renderedTasksArray = [];
+  for (let task of props.array) {
+    renderedTasksArray.push(
+      <Task
+        taskInformation={task}
+      />
     )
   }
+  return (
+    <div className="categories">
+      <h4>{props.categoryName}</h4>
+      {renderedTasksArray}
+      <button onClick={props.dummyClick}> dummy category button </button>
+    </div>
+  )
 }
 
 

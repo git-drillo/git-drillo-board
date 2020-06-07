@@ -7,19 +7,20 @@
 
 import React from 'react';
 
-// render the Name of the task with any tags if there are any
-// render the person who is assigned to the task
-
 // on expand
   // task id
   // 
 
 const Task = (props) => (
-  <div className="individualTask">
-    <p> Task: {props.taskName} </p>
-    <p> Tag: {props.tag} </p>
-    <p> AssignedDev: {props.AssignedDev} </p>
+  <div className = "individualTask" style={taskStyle}>
+    <p> Task: {props.taskInformation.task} </p>
+    <p> Tag: {props.taskInformation.tag} </p>
+    <p> AssignedDev: {props.taskInformation.assignedDev} </p>
   </div>
 )
+
+const taskStyle = {
+  border: 'thin solid black'
+}
 
 export default Task;

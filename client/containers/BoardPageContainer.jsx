@@ -9,14 +9,14 @@ import React, { Component } from "react";
 import Header from '../components/Header.jsx'
 import Category from "../components/Category.jsx";
 
-// const mapStateToProps = state => {
-//   // provide pertinent state here
-  
-// }
+const mapStateToProps = state => {
+  // provide pertinent state here
 
-// const mapDispatchToProps = dispatch => {
-//   // create functions that will dispatch action creators
-// }
+}
+
+const mapDispatchToProps = dispatch => {
+  // create functions that will dispatch action creators
+}
 
 class BoardPageContainer extends Component {
   constructor(props) {
@@ -25,46 +25,46 @@ class BoardPageContainer extends Component {
       header: {
         title: 'Git Drillo Board'
       },
-      toDo: ['fizz', 'buzz'],
-      inProgress: [],
-      pending: [],
-      done: [],
+      toDo: [{ task: 'Create login button', tag: 'frontend', assignedDev: 'none' }, { task: 'create basic project page', tag: 'frontend', assignedDev: 'none' }, { task: 'set up button to make new project', tag: 'fullstack', assignedDev: 'none' }],
+      inProgress: [{ task: 'Create login button', tag: 'frontend', assignedDev: 'none' }, { task: 'create basic project page', tag: 'frontend', assignedDev: 'none' }, { task: 'set up button to make new project', tag: 'fullstack', assignedDev: 'none' }],
+      pending: [{ task: 'set up sql pool', tag: 'backend', assignedDev: 'louis' }],
+      done: [{ task: 'set up backend dependencies', tag: 'backend', assignedDev: 'jonathan' }, { task: 'set up database tables', tag: 'backend', assignedDev: 'louis' }, { task: 'set up button to make new project', tag: 'fullstack', assignedDev: 'none' }],
     }
-    dummyClick = this.dummyClick.bind(this);
   }
 
-  dummyClick() {
-    console.log('bruh....')
+  dummyClick = () => {
+    console.log('dummy click test')
   }
 
   render() {
-    return(
-      <div className = 'BoardPageContainer'>
-        <Header 
-          header = { this.state.header }
-          dummyClick = { dummyClick }
-          array = { }
+    return (
+      <div>
+        <Header
+          header={this.state.header}
+          dummyClick={this.dummyClick}
         />
-        <Category
-          categoryName = 'To Do'
-          dummyClick = { this.dummyClick }
-          array = { this.state.toDo }
-        />
-        <Category
-          categoryName = 'In Progress'
-          dummyClick = { this.dummyClick }
-          array = { this.state.toDo }
-        />
-        <Category
-          categoryName = 'Done'
-          dummyClick = { this.dummyClick }
-          array = { this.state.done }
-        />
-        <Category
-          categoryName = 'Pending'
-          dummyClick = { this.dummyClick }
-          array = { this.state.pending }
-        />
+        <div className='BoardPageContainer'>
+          {/* <Category
+            categoryName='To Do'
+            dummyClick={this.dummyClick}
+            array={this.state.toDo}
+          /> */}
+          <Category
+            categoryName='In Progress'
+            dummyClick={this.dummyClick}
+            array={this.state.inProgress}
+          />
+          <Category
+            categoryName='Done'
+            dummyClick={this.dummyClick}
+            array={this.state.done}
+          />
+          {/* <Category
+            categoryName='Pending'
+            dummyClick={this.dummyClick}
+            array={this.state.pending}
+          /> */}
+        </div>
       </div>
     )
   }
