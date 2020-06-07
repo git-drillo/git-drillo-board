@@ -25,8 +25,7 @@ if (process.env.NODE_ENV === 'production') {
 
   // Home endpoint
   app.get('/', (req, res) => {
-    // res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'));
-    res.send('HOME')
+    res.sendFile(path.resolve(__dirname, '../index.html'));
   });
 }
 
