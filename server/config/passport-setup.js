@@ -16,7 +16,7 @@ passport.use(
             //will be given through API
         clientSecret: GITHUB_CLIENT_SECRET,
             //callback url that sends client to github login page
-        callbackURL: "http://localhost:8080/auth/github/callback"
+        callbackURL: "http://localhost:3000/auth/github/callback"
     }, (accessToken, refreshToken, profile, done) => { //basic 4 params -> getting profile information from auth-route
             //passport callback fn
         //after getting successully authenticated - run this callback function
@@ -25,18 +25,19 @@ passport.use(
 
             const { username } = profile;
 
-            const insert = `INSERT INTO users (_id, githandle) VALUES (DEFAULT, $1) RETURNING *`
+            const insert = `INSERT INTO users (_id, githandle) VALUES (uuid_generate_v4(), $1) RETURNING *`
 
             db.query(`SELECT * FROM users WHERE githandle='${username}'`)
                 .then(data =>{
                     console.log(data.rows)
                     if(data.rows.length > 0){
-                        done(null, user);
+                        done(null, data.rows[0]);
                     } else {
                         db.query(insert, [username])
                         .then(user => {
-                            done(null, users.row[0])
-                        });
+                            done(null, user.rows[0])
+                        })
+                        .catch(err => console.log(err))
                     }
                 })
                 .catch(err => console.log(err))
