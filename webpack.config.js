@@ -1,10 +1,10 @@
-const path = require('path');
+const path = require("path");
 
 module.exports = {
-  entry: './client/index.js',
+  entry: "./client/index.js",
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'client/dist'),
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "client/dist"),
     // publicPath: '/dist',
   },
   mode: process.env.NODE_ENV,
@@ -15,10 +15,10 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: 'babel-loader',
+            loader: "babel-loader",
             options: {
-              presets: ['@babel/preset-env', '@babel/preset-react'],
-              plugins: ['@babel/plugin-proposal-class-properties'],
+              presets: ["@babel/preset-env", "@babel/preset-react"],
+              plugins: ["@babel/plugin-proposal-class-properties"],
             },
           },
         ],
@@ -26,15 +26,15 @@ module.exports = {
       {
         test: /\.css$/,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader'],
+        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.(png|jpe?g|svg)$/,
         exclude: /node_modules/,
         use: [
-          'file-loader',
+          "file-loader",
           {
-            loader: 'image-webpack-loader',
+            loader: "image-webpack-loader",
             options: {
               mozjpeg: {
                 quality: 50,
@@ -49,14 +49,14 @@ module.exports = {
     ],
   },
   devServer: {
-    contentBase: path.resolve(__dirname, './client'),
-    publicPath: '/dist',
+    contentBase: path.resolve(__dirname, "./client"),
+    publicPath: "/dist",
     hot: true,
     historyApiFallback: true,
     proxy: {
-      '/api': 'http://localhost:3000',
-      '/auth': 'http://localhost:3000',
+      "/api": "http://localhost:3000",
+      "/auth": "http://localhost:3000",
     },
   },
-  devtool: 'eval-source-map'
+  devtool: "eval-source-map",
 };
