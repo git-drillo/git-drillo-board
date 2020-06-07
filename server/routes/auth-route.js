@@ -31,10 +31,10 @@ router.get(
     failureRedirect: '/fail',
   }),
   (req, res) => {
-    // console.log(req.query);
+    //Saved temporary code from req.query into res.locals.code
+    // this temporary code will be used to request the user's access token from github
     const { code } = req.query;
     res.locals.code = code;
-    console.log(code)
     //if successful authentication:
     console.log('SUCCESSFUL AUTHENTICATION');
     res.redirect('/dashboard');
