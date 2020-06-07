@@ -1,3 +1,9 @@
+html, body{
+  height: 100%;
+  margin:0;
+  padding:0;
+}
+
 button {
   background: none;
   border: 0;
@@ -31,4 +37,29 @@ button:hover {
 .Header {
   display: flex;
   justify-content: space-between;
+}
+
+.gitLogo{
+  height: 75px;
+}
+
+#imgWrap{
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.gitLogo, #imgWrap {
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  margin:auto;
+}
+
+.loginWithP{
+  text-align: center;
+  margin: 0;
+  margin-top: 310px;
 }
