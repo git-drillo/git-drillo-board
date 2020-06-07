@@ -6,7 +6,7 @@ const router = require('express').Router();
  * @access  Public
  */
 router.get('/', (req, res) => {
-  res.send('Hitting api GET endpoint!');
+  res.sendStatus(200);
 });
 
 /**
