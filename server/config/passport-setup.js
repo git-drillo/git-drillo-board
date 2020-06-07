@@ -29,7 +29,7 @@ passport.use(
     (accessToken, refreshToken, profile, done) => {
       //basic 4 params -> getting github profile information from auth-route
       /** passport callback fn
-       * acessToken - is how we will make an API call on behalf of the user. It is sent to us by github in the response.
+       * accessToken - is how we will make an API call on behalf of the user. It is sent to us by github in the response.
        * refreshToken - is a token that can refresh the access token if it 'times out'.
        * profile - is the user's record in Github. We associate this profile with a user record in our application database.
        * done - after getting successully authenticated - run this callback function
@@ -37,8 +37,11 @@ passport.use(
        **/
 
       console.log('PASSPORT CALLBACK FIRED', profile.username);
-
+      console.log('ACCESS TOKEN: ', accessToken);
       const { username } = profile;
+
+
+      // res.locals.token = accessToken;
 
       const selectQuery = `SELECT * FROM users WHERE githandle='${username}'`;
       const insertQuery = `INSERT INTO users (id, githandle) VALUES (uuid_generate_v4(), $1) RETURNING *`;

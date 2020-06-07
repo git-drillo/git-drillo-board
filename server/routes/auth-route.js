@@ -31,10 +31,18 @@ router.get(
     failureRedirect: '/fail',
   }),
   (req, res) => {
+    // console.log(req.query);
+    const { code } = req.query;
+    res.locals.code = code;
+    console.log(code)
     //if successful authentication:
     console.log('SUCCESSFUL AUTHENTICATION');
     res.redirect('/dashboard');
   }
 );
+
+router
+
+
 
 module.exports = router;
