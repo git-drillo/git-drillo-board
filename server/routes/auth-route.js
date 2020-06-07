@@ -33,7 +33,7 @@ router.get(
   (req, res) => {
     //if successful authentication:
     console.log("SUCCESSFUL AUTHENTICATION");
-    res.redirect("/");
+    res.redirect("/dashboard");
   }
 );
 
