@@ -43,7 +43,7 @@ passport.use(
       const { username } = profile;
 
       const selectQuery = `SELECT * FROM users WHERE githandle='${username}'`;
-      const insertQuery = `INSERT INTO users (_id, githandle) VALUES (uuid_generate_v4(), $1) RETURNING *`;
+      const insertQuery = `INSERT INTO users (id, githandle) VALUES (uuid_generate_v4(), $1) RETURNING *`;
       console.log(done);
       db.query(selectQuery)
         .then((data) => {
