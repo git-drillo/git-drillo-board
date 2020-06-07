@@ -3,7 +3,7 @@
  * @author Katty Polyak and
  * @date Sat, Jun 6, 2020
  * @description main rendering component
-*/
+ */
 
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
@@ -31,50 +31,43 @@ class App extends Component {
               path='/dashboard'
               component={() => <LandingPageContainer />}
             /> */}
-          <Route
-            exact
-            path='/'
-            component={() => <BoardPageContainer />}
-          />
+          <Route exact path="/" component={() => <BoardPageContainer />} />
           {/* </Switch> */}
         </main>
       </div>
-    )
+    );
   }
 }
 
 export default App;
 
-
 // app
-  // Header.jsx
+// Header.jsx
 
-  ///// if just sign in display landing page /////
+///// if just sign in display landing page /////
 
+///// if project then display board container /////
 
+// BoardPage.jsx
+// params pending, to do, done
+// Categories.jsx
 
-  ///// if project then display board container /////
+// params tasks
+// Tasks.jsx
 
-    // BoardPage.jsx
-      // params pending, to do, done
-     // Categories.jsx
+// <BoardPageContainer>
+//     <Category id="toDo" />
+//     <Category id="inProgress" />
+//     <Category id="inProgress" />
+// </BoardPageContainer>
 
-      // params tasks 
-      // Tasks.jsx
+// class Category {
+//  for () {
 
-      // <BoardPageContainer>
-      //     <Category id="toDo" />
-      //     <Category id="inProgress" />
-      //     <Category id="inProgress" />
-      // </BoardPageContainer>
-
-      // class Category {
-      //  for () {
-
-      //  }
-      //         <Task 
-      //           name = jose
-      //           person = 
-      //           id =
-      //         />
-      //       render array
+//  }
+//         <Task
+//           name = jose
+//           person =
+//           id =
+//         />
+//       render array
