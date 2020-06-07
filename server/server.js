@@ -21,12 +21,21 @@ app.use("/auth", authRoute);
 app.use("/api", apiRoute);
 
 // Serve static files in production mode
+<<<<<<< HEAD
 if (process.env.NODE_ENV === "production") {
   app.use("/dist", express.static(path.resolve(__dirname, "../dist")));
 
   // Home endpoint
   app.get("/", (req, res) => {
     res.sendFile(path.resolve(__dirname, "../index.html"));
+=======
+if (process.env.NODE_ENV === 'production') {
+  app.use('/dist', express.static(path.resolve(__dirname, '../client/dist')));
+
+  // Home endpoint
+  app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client/index.html'));
+>>>>>>> be6b150b9e079821f10bf956ac3e330a544c29bb
   });
 }
 

@@ -3,9 +3,15 @@ const path = require("path");
 module.exports = {
   entry: "./client/index.js",
   output: {
+<<<<<<< HEAD
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
     publicPath: "/dist",
+=======
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'client/dist'),
+    // publicPath: '/dist',
+>>>>>>> be6b150b9e079821f10bf956ac3e330a544c29bb
   },
   mode: process.env.NODE_ENV,
   module: {
@@ -49,6 +55,8 @@ module.exports = {
     ],
   },
   devServer: {
+    contentBase: path.resolve(__dirname, './client'),
+    publicPath: '/dist',
     hot: true,
     historyApiFallback: true,
     proxy: {
@@ -56,4 +64,5 @@ module.exports = {
       "/auth": "http://localhost:3000",
     },
   },
+  devtool: 'eval-source-map'
 };
