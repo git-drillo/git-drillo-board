@@ -18,7 +18,7 @@ function Category(props) {
     <div className="categories">
       <h4>{props.categoryName}</h4>
       {renderedTasksArray}
-      <button onClick={props.createNewTask}> dummy category button </button>
+      <button onClick={props.createNewTask}> + Add another card </button>
     </div>
   );
 }

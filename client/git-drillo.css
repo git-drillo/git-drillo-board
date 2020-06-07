@@ -15,23 +15,29 @@ button:hover {
   color: white;
 }
 
+.Header {
+  display: flex;
+  justify-content: space-between;
+}
+
 .BoardPageContainer {
   border: 2px solid white;
   display: flex;
   justify-content: space-around;
+  border-radius: 4px;
+}
+.categories {
+  border: 2px solid white;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .individualTask {
   border: 2px solid white;
   font-size: 14px;
   width: 300px;
+  border-radius: 4px;
+  padding: 10px;
 }
 
-.Header {
-  display: flex;
-  justify-content: space-between;
-}
 
-.categories {
-  border: 2px solid white;
-}

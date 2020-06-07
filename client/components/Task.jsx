@@ -13,7 +13,6 @@ import React from 'react';
 
 function Task (props) {
   let taskStyling = {};
-  console.log(props.taskInformation.pending)
   if (props.taskInformation.pending) {
     taskStyling = { border: 'thin solid red' }
   } else {
@@ -27,7 +26,7 @@ function Task (props) {
       <p> AssignedDev: {props.taskInformation.assignedDev} </p>
       <p> Commit: {props.taskInformation.commitMessage} </p>
       <p> CommitUrl: {props.taskInformation.commitUrl} </p>
-      <button onClick={props.taskButtonEdit}> task button </button>
+      <button onClick={props.taskButtonEdit}> edit </button>
     </div>
   );
 }

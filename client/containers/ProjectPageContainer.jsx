@@ -35,17 +35,21 @@ class BoardPageContainer extends Component {
   }
 
   createNewTask = () => {
-    console.log('new task created');
+    console.log('new task created functionality has been invoked');
   };
 
   taskButtonEdit = () => {
-    console.log('edit task button created')
+    console.log('edit task button functionality has been invoked')
+  }
+  
+  returnToProjectsBoard = () => {
+    console.log('return to Projects Page functionality has been invoked')
   }
 
   render() {
     return (
       <div>
-        <Header header={this.state.header} createNewTask={this.createNewTask} />
+        <Header header={this.state.header} returnToProjectsBoard={this.returnToProjectsBoard} />
         <div className="BoardPageContainer">
           <Category categoryName="In Progress" createNewTask={this.createNewTask} taskButtonEdit={this.taskButtonEdit} array={this.state.inProgress} />
           <Category categoryName="Done" createNewTask={this.createNewTask} taskButtonEdit={this.taskButtonEdit} array={this.state.done} />
