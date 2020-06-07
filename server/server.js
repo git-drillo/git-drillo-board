@@ -30,15 +30,16 @@ if (process.env.NODE_ENV === 'production') {
   app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client/index.html'));
   });
+
+  // Handle redirections
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client/index.html'));
+  });
 }
 
-app.get('/projectboard/:project_name', (req, res) => {
-  res.status(200).send('On project board page');
-});
-
-app.get('/dashboard', (req, res) => {
-  res.status(200).send('On dashboard page');
-});
+// app.get('/projectboard/:project_name', (req, res) => {
+//   res.status(200).send('On project board page');
+// });
 
 // Global Error handler
 app.use((err, req, res, next) => {
