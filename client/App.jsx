@@ -11,6 +11,7 @@ import './git-drillo.css';
 
 import BoardPageContainer from './containers/BoardPageContainer.jsx';
 // import LandingPageContainer from './containers/LandingPageContainer.jsx';
+import LoginPage from './components/LoginPage.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -31,7 +32,8 @@ class App extends Component {
               path='/dashboard'
               component={() => <LandingPageContainer />}
             /> */}
-          <Route exact path="/" component={() => <BoardPageContainer />} />
+          <Route exact path="/" component={()=>  <LoginPage />} />
+          <Route exact path="/dashboard" component={() => <BoardPageContainer />} />
           {/* </Switch> */}
         </main>
       </div>
