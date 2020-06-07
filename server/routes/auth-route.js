@@ -12,7 +12,7 @@ router.get('/github',
 }));
 
 router.get('/fail', (req, res) => {
-    res.send('FAILURE TO AUTHENTICATE');
+    res.status(200).send('FAILURE TO AUTHENTICATE');
 })
 
 
@@ -30,8 +30,9 @@ router.get('/github/callback',
     }),
     (req, res) =>{
         //if successful authentication:
-        res.redirect('/');
-        res.send('SUCCESSFUL AUTHENTICATION')
+        // res.redirect('/');
+        console.log('SUCCESSFUL AUTHENTICATION')
+        res.sendStatus(200)
     }
 );
 
