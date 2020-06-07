@@ -4,8 +4,8 @@ module.exports = {
   entry: './client/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/dist',
+    path: path.resolve(__dirname, 'client/dist'),
+    // publicPath: '/dist',
   },
   mode: process.env.NODE_ENV,
   module: {
@@ -49,6 +49,8 @@ module.exports = {
     ],
   },
   devServer: {
+    contentBase: path.resolve(__dirname, './client'),
+    publicPath: '/dist',
     hot: true,
     historyApiFallback: true,
     proxy: {
@@ -56,4 +58,5 @@ module.exports = {
       '/auth': 'http://localhost:3000',
     },
   },
+  devtool: 'eval-source-map'
 };
