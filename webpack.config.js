@@ -49,11 +49,29 @@ module.exports = {
     ],
   },
   devServer: {
+    host: 'localhost',
+    port: 8080,
+    // match the output path
+    contentBase: path.resolve(__dirname, 'dist'),
+    // enable HMR on the devServer
     hot: true,
+    // match the output 'publicPath'
+    publicPath: '/dist/',
+    // fallback to root for other urls
     historyApiFallback: true,
+
+    inline: true,
+
+    headers: { 'Access-Control-Allow-Origin': '*' },
     proxy: {
-      '/api': 'http://localhost:3000',
-      '/auth': 'http://localhost:3000',
+      '/api': {
+        target: 'http://localhost:3000',
+        secure: false,
+      },
+      '/auth': {
+        target: 'http://localhost:3000',
+        secure: false,
+      }
     },
   },
 };

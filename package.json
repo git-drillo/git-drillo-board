@@ -4,9 +4,9 @@
   "description": "A tool for developers to integrate SCRUM into the production pipeline",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=production nodemon ./server/server.js",
-    "build": "NODE_ENV=production webpack",
-    "dev": "NODE_ENV=development concurrently \"webpack-dev-server\" \"nodemon ./server/server.js\""
+    "start": "cross-env NODE_ENV=production nodemon ./server/server.js",
+    "build": "cross-env NODE_ENV=production webpack",
+    "dev": "cross-env NODE_ENV=development concurrently \"webpack-dev-server --open --hot --inline --progress --colors --watch --contentbase ./\" \"nodemon ./server/server.js\""
   },
   "repository": {
     "type": "git",

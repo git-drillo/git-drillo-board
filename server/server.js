@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const passportSetup = require('./config/passport-setup');
 require('dotenv/config');
 
 const app = express();
@@ -8,9 +9,11 @@ const app = express();
 const authRoute = require('./routes/auth-route');
 const apiRoute = require('./routes/api-route');
 
+
 // Body Parsing Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 
 // Use routes
 app.use('/auth', authRoute);
@@ -22,9 +25,16 @@ if (process.env.PORT === 'production') {
 
   // Home endpoint
   app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client/index.html'));
+    // res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'));
+    res.send('HOME')
   });
 }
+
+///TEST FOR DEV
+app.get('/', (req, res) => {
+  res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'));
+  // res.send('HOME')
+});
 
 // Global Error handler
 app.use((err, req, res, next) => {
@@ -43,6 +53,7 @@ app.use((err, req, res, next) => {
   res.send(output);
 });
 
-const PORT = process.env.PORT || 3000;
+// const PORT = process.env.PORT || 8080;
+const PORT =  8080;
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
