@@ -1,13 +1,11 @@
-const passport = require("passport");
-require("dotenv").config();
+const passport = require('passport');
+require('dotenv').config();
 
-const GithubStrategy = require("passport-github2");
+const GithubStrategy = require('passport-github2');
 
 const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } = process.env;
 
-const db = require("../db/postgres.js");
-
-console.log("INSIDE passport-setup.js");
+const db = require('../db/postgres.js');
 
 // Configure the Github strategy for use by Passport.
 //
@@ -26,7 +24,7 @@ passport.use(
       //will be given through API. used to identify our app to github
       clientSecret: GITHUB_CLIENT_SECRET,
       //callback url that sends client to github login page
-      callbackURL: "/auth/github/callback",
+      callbackURL: '/auth/github/callback',
     },
     (accessToken, refreshToken, profile, done) => {
       //basic 4 params -> getting github profile information from auth-route
@@ -38,7 +36,7 @@ passport.use(
        * routes to 'authenticated page' w/ correct user information
        **/
 
-      console.log("PASSPORT CALLBACK FIRED", profile.username);
+      console.log('PASSPORT CALLBACK FIRED', profile.username);
 
       const { username } = profile;
 
@@ -46,19 +44,19 @@ passport.use(
       const insertQuery = `INSERT INTO users (id, githandle) VALUES (uuid_generate_v4(), $1) RETURNING *`;
       console.log(done);
       db.query(selectQuery)
-        .then((data) => {
+        .then(data => {
           console.log(data.rows);
           if (data.rows.length > 0) {
             return done(null, data.rows[0]);
           } else {
             db.query(insertQuery, [username])
-              .then((user) => {
+              .then(user => {
                 return done(null, user.rows[0]);
               })
-              .catch((err) => console.log(err));
+              .catch(err => console.log(err));
           }
         })
-        .catch((err) => console.log(err));
+        .catch(err => console.log(err));
     }
   )
 );
@@ -78,7 +76,7 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(function (id, done) {
   const findUserQuery = `SELECT * FROM users WHERE id = $1`;
 
-  db.query(findUserQuery, [id]).then((user) => {
+  db.query(findUserQuery, [id]).then(user => {
     done(null, user); // done is used to progress to the next middleware
   });
 });
