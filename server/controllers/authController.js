@@ -1,53 +1,43 @@
-const router = require('express').Router();
-// const passport = require('passport');
-
-const fetch = require('node-fetch');
-const { Headers } = require('node-fetch');
-const deserializeUser = require('../config/passport-setup.js');
-
-const cookieParser = require('cookie-parser');
-
 const authController = {};
 
-// authController.getAccessToken = (req, res, next) => {
-//   const { code } = res.locals;
-//   const { GITHUB_CLIENT_SECRET, GITHUB_CLIENT_ID } = process.env;
+/**
+ * @middleware  Get Access Token from cookies
+ * @desc    Saves access token from cookies to res.locals.accessToken
+ */
+authController.getAccessToken = (req, res, next) => {
+  const { accessToken } = req.cookies;
+  res.locals.accessToken = accessToken;
+  return next();
+};
 
-//   const meta = {
-//     client_id: GITHUB_CLIENT_ID,
-//     client_secret: GITHUB_CLIENT_SECRET,
-//     code: code,
-//   };
+/**
+ * @middleware  Get User Id from cookies
+ * @desc    Saves access token from cookies to res.locals.accessToken
+ */
+authController.getUserId = (req, res, next) => {
+  const { userId } = req.cookies;
+  res.locals.userId = userId;
+  return next();
+};
 
-//   const myHeaders = new Headers(meta);
+/**
+ * @middleware  Get Username by userId
+ * @desc    Looks up user by userId in users table. Saves username to res.locals.username
+ */
+authController.getUsername = (req, res, next) => {
+  const userId = res.locals.userId;
 
-//   const requestOptions = {
-//     method: 'POST',
-//     headers: myHeaders,
-//     redirect: 'follow',
-//   };
-// };
-
-// fetch(`https://api.github.com/users/${profile.username}`, {
-//   method: 'get',
-//   params: { 'access_token': accessToken }
-// })
-// .then(res => res.json())
-// .then(data=>console.log(data))
-// .catch(err => console.log('ERROR: ', err))
+  const query = `SELECT githandle FROM users WHERE id='${userId}';`;
+  db.query(query).then((data) => {
+    res.locals.username = data;
+  });
+};
 
 authController.saveAccessToken = (req, res, next) => {
   const { user } = req;
 
-  // Purpose of locals storage?
-  res.locals.accessToken = user.accessToken;
-  res.locals.userId = user.userId;
-
-  res.cookie('accessToken', user.accessToken, { maxAge: 360000 });
-  res.cookie('userId', user.userId, { maxAge: 360000 });
-  // console.log('ACCESS TOKEN', res.locals.accessToken);
-
-  // console.log('COOKIE: ', req.cookies);
+  res.cookie("accessToken", user.accessToken, { maxAge: 360000 });
+  res.cookie("userId", user.userId, { maxAge: 360000 });
   next();
 };
 

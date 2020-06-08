@@ -1,31 +1,45 @@
-const router = require('express').Router();
-const db = require('../db/postgres');
-require('dotenv/config');
+const router = require("express").Router();
+const db = require("../db/postgres");
+require("dotenv/config");
+
+// What is this route used for? (KP)
 
 /**
  * @route   GET /api
  * @desc    Testing GET requests for api route
  * @access  Public
  */
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   res.sendStatus(200);
 });
 
+// What is this route used for? (KP)
+
 /**
  * @route   GET /api
  * @desc    Testing GET requests for api route
  * @access  Public
  */
-router.post('/', (req, res) => {
-  res.send('Hitting api POST endpoint');
+router.post("/", (req, res) => {
+  res.send("Hitting api POST endpoint");
 });
+
+// /**
+//  * @route   POST /api/create-project
+//  * @desc    Adds the project information to projects and users_projects tables
+//  * @desc    and adds associated collaborators to users and users_projects tables
+//  * @access  Public (should be private)
+//  */
+// router.post('/create-project/'), (req,res,next) => {
+
+// }
 
 /**
  * @route   GET /api/projects/
  * @desc    Returns an array of projects associated with a particular user
  * @access  Public (should be private)
  */
-router.get('/projects/', async (req, res, next) => {
+router.get("/projects/", async (req, res, next) => {
   try {
     // User ID is stored in the userId cookie
     const id = req.cookies.userId;
@@ -45,7 +59,7 @@ router.get('/projects/', async (req, res, next) => {
  * @desc    Returns all tasks associated with a particular project in two arrays based on status
  * @access  Public (should be private)
  */
-router.get('/tasks/:project_id', async (req, res) => {
+router.get("/tasks/:project_id", async (req, res) => {
   try {
     const id = req.params.project_id;
     const inProgressQuery = `
@@ -75,7 +89,7 @@ router.get('/tasks/:project_id', async (req, res) => {
  * @desc    Create a new task for a particular project
  * @access  Public (should be private)
  */
-router.post('/api/tasks/:project_id', async (req, res) => {
+router.post("/api/tasks/:project_id", async (req, res) => {
   try {
     // Get project id
     const id = req.params.id;
