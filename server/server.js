@@ -1,10 +1,9 @@
 const express = require('express');
 const path = require('path');
-const passportSetup = require('./config/passport-setup');
-const passport = require('passport');
 const cookieParser = require('cookie-parser');
+const passport = require('passport');
+require('./config/passport-setup');
 require('dotenv/config');
-
 
 const app = express();
 
@@ -12,16 +11,19 @@ const app = express();
 const authRoute = require('./routes/auth-route');
 const apiRoute = require('./routes/api-route');
 
+// Initialize passport
+app.use(passport.initialize());
+
 // Body Parsing Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(passport.initialize());
+
+// Cookie Parsing Middleware
 app.use(cookieParser());
 
 // Use routes
 app.use('/auth', authRoute);
 app.use('/api', apiRoute);
-
 
 // Serve static files in production mode
 if (process.env.NODE_ENV === 'production') {
@@ -36,7 +38,6 @@ if (process.env.NODE_ENV === 'production') {
 
   // Handle redirections
   app.get('*', (req, res) => {
-    console.log('HERE HERE', req.cookies)
     res.sendFile(path.resolve(__dirname, '../client/index.html'));
   });
 }
@@ -62,6 +63,6 @@ app.use((err, req, res, next) => {
   res.send(output);
 });
 
+// Server defaults to port 3000
 const PORT = process.env.PORT || 3000;
-
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

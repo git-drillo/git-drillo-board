@@ -8,16 +8,17 @@
 import React from 'react';
 
 function Project (props) {
+  const {id, title, isOwner } = props.projectInformation
   let projectStyling = {};
-  if (props.projectInformation.projectOwn) {
+  if (isOwner) {
     projectStyling = { border: 'thin solid red' }
   } else {
     projectStyling = { border: 'thin solid black' }
   }
 
   return(
-    <div className="individualProject" style={projectStyling}>
-      <p> {props.projectInformation.projectName} </p>
+    <div className="individualProject" style={projectStyling} project={id}>
+      <p> {title} </p>
     </div>
   );
 }

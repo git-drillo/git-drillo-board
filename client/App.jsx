@@ -12,7 +12,7 @@ import store from './store';
 import './App.css';
 
 import ProjectPageContainer from './containers/ProjectPageContainer.jsx';
-import LandingPageContainer from './containers/LandingPageContainer.jsx';
+import DashboardContainer from './containers/DashboardContainer.jsx';
 import LoginPage from './components/LoginPage.jsx';
 import Header from './components/Header.jsx';
 
@@ -23,7 +23,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={() => <LoginPage />} />
         {/* Working on landing page container still */}
-        <Route exact path="/dashboard" component={() => <LandingPageContainer />} />
+        <Route exact path="/dashboard" component={() => <DashboardContainer />} />
         {/* <Route exact path="/dashboard" component={() => <h1>Logged in</h1>} /> */}
         <Route exact path="/projectBoard" component={() => <ProjectPageContainer />} />
       </Switch>

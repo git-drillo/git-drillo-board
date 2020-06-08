@@ -21,20 +21,20 @@ router.post('/', (req, res) => {
 });
 
 /**
- * @route   GET /api/projects/:user_id
+ * @route   GET /api/projects/
  * @desc    Returns an array of projects associated with a particular user
  * @access  Public (should be private)
  */
-router.get('/projects/:user_id', async (req, res, next) => {
+router.get('/projects/', async (req, res, next) => {
   try {
-    const id = req.params.user_id;
+    // User ID is stored in the userId cookie
+    const id = req.cookies.userId;
     const query = `
     SELECT * FROM projects
     WHERE project_owner = '${id}';`;
 
     const result = await db.query(query);
-
-    return res.json({ data: result.rows });
+    return res.json(result.rows);
   } catch ({ message: msg }) {
     return next({ msg });
   }
@@ -67,6 +67,44 @@ router.get('/tasks/:project_id', async (req, res) => {
     });
   } catch ({ message: msg }) {
     return next({ msg });
+  }
+});
+
+/**
+ * @route   POST /api/tasks/:project_id
+ * @desc    Create a new task for a particular project
+ * @access  Public (should be private)
+ */
+router.post('/api/tasks/:project_id', async (req, res) => {
+  try {
+    // Get project id
+    const id = req.params.id;
+
+    // Get dev that was assigned to task
+    const { assignedDev } = req.body;
+
+    // (Probably can be handled with subqueries)
+    const devQuery = `
+      SELECT id FROM users
+      WHERE githandle = $1;`;
+
+    // Get the assigned dev's id
+    const devResult = await db.query(devQuery, [assignedDev]);
+    const devId = devResult.rows[0].id;
+
+    const query = `
+      INSERT INTO tasks (id, ispending, status, project_id, task_assignee)
+      VALUES (uuid_generate_v4(), 'f', 'in progress', $1, $2)
+      RETURNING *;`;
+
+    const result = await db.query(query, [id, devId]);
+
+    res.json({
+      message: `${assignedDev} was assigned task ID ${result.rows[0].id}`,
+      task: result.rows[0],
+    });
+  } catch ({ message: msg }) {
+    return res.status(400).json({ msg });
   }
 });
 
