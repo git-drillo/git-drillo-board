@@ -8,13 +8,19 @@ TitleBar
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { render } from 'react-dom';
 
 // render the Header with link back to LandingPageContainer
-const TitleBar = props => (
-  <div className="projectTitleBar">
-    <h3> {props.projectName} </h3>
-    <Link to="/dashboard">Back to Dashboard</Link>
-  </div>
-);
+function TitleBar (props) {
+    return (
+      <div className="projectTitleBar">
+        <h3> {props.header} </h3>
+        <div>
+          <Link to={props.redirectRoute}> {props.redirectMessage} </Link>
+          <button onClick={props.refresh}>Refresh</button>
+        </div>
+      </div>
+    );
+}
 
 export default TitleBar;
