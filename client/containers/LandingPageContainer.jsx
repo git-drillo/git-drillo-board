@@ -5,129 +5,26 @@
  * @description presentation component that renders a Landing Page component
  */
 
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import * as dashboardActions from '../actions/dashboardActions';
+import { bindActionCreators } from 'redux';
 import LandingPage from '../components/LandingPage.jsx';
-import Header from '../components/Header.jsx';
 
-const mapStateToProps = state => ({
-  // provide state key/value pairs for landing page container components
-});
-
-const mapDispatchToProps = dispatch => ({
-  // link in functions from actions.js
-});
-
-class LandingPageContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      // array of projects specific to the user id
-      userProjects: [
-        {
-          projectName: 'foobar',
-          projectOwn: true,
-        },
-        {
-          projectName: 'foobar',
-          projectOwn: true,
-        },
-        {
-          projectName: 'foobar',
-          projectOwn: true,
-        },
-        {
-          projectName: 'foobar',
-          projectOwn: false,
-        },
-        {
-          projectName: 'foobar',
-          projectOwn: true,
-        },
-        {
-          projectName: 'foobar',
-          projectOwn: false,
-        },
-      ],
-    };
-  }
-
-  createNewProject = () => {
-    // send a response to the database
-    // pop up a form for the use to fill out with the repo link
-    console.log('create new project function has been invoked');
-  };
-
-  render() {
-    return (
-      <div>
-        {/* <TitleBar header={this.state.header} returnToProjectsBoard={this.returnToProjectsBoard} /> */}
-        <div>
-          <LandingPage
-            projectsArray={this.state.userProjects}
-            createNewProject={this.createNewProject}
-          />
-        </div>
-      </div>
-    );
-  }
+function LandingPageContainer(props) {
+  const { projects, createProject } = props;
+  return (
+    <div>
+      {/* <TitleBar header={this.state.header} returnToProjectsBoard={this.returnToProjectsBoard} /> */}
+      <LandingPage projects={projects} createProject={createProject} />
+    </div>
+  );
 }
 
-// export default connect(mapStateToProps, mapDispatchToProps)(LandingPageContainer);
-export default LandingPageContainer;
+const mapStateToProps = state => ({
+  projects: state.dashboard.projects,
+});
 
-// const loginState = {
-//   loginRedirect: function () { /* go to landing page AFTER github auth redirect */ },
-// }
+const mapDispatchToProps = dispatch => bindActionCreators(dashboardActions, dispatch);
 
-// const landingPageState  = {
-//   userId: String, /* this should be the log in cookie code gathered from oauth */
-//   owner: String, /* name of the person from the oauth cookie */
-
-//   projects = [
-//     {
-//       projectName: '',
-//       project_id: '',
-//       userIsOwner: true,
-//     }
-//   ],
-
-//   onMount: function() { /* fetch request to gather all the information in db that matches the userId.  the token will be sent in the header */ },
-
-//   createNewProjectBoard: function() { /* create funcitonality */},
-//   redirectToProject: function(projectId) { /* go to boardPage displaying every category and task in  */},
-
-//   // render ( /* render all project. render those that are owned differently */),
-// }
-
-// const boardPageState = {
-//   userId: {
-//     repoUrl: '',
-//     owner_id: '',
-//     toDo: [],
-//     inProgress: [],
-//   },
-//   userId: {
-//     repoUrl: '',
-//     owner_id: '',
-//     toDo: [],
-//     inProgress: [],
-//   },
-
-//   createNewTask: function() {},
-// }
-
-// let toDo = [
-//   { task: 'Create login button',
-//     tag: 'frontend',
-//     assignedDev: 'none',
-//     userId: 'string',
-//     commitMessage: '',
-//     commitUrl: '',
-//   },
-// ]
-// let inProgress = [
-//   { task: 'Create login button', tag: 'frontend', assignedDev: 'none' },
-//   { task: 'create basic project page', tag: 'frontend', assignedDev: 'none' },
-//   { task: 'set up button to make new project', tag: 'fullstack', assignedDev: 'none' },
-//   { task: 'set up button to make new project', tag: 'fullstack', assignedDev: 'none' },
-// ]
+export default connect(mapStateToProps, mapDispatchToProps)(LandingPageContainer);
