@@ -43,14 +43,23 @@ passport.use(
 
       const selectQuery = `SELECT * FROM users WHERE githandle='${username}'`;
       const insertQuery = `INSERT INTO users (id, githandle) VALUES (uuid_generate_v4(), $1) RETURNING *`;
+
+      // const serializedToken = passport.serialize(accessToken,);
+      // console.log(serializedToken);
+
+      const userObj = {
+        user: username,
+        token: accessToken
+      }
+
       db.query(selectQuery)
         .then(data => {
           if (data.rows.length > 0) {
-            return done(null, accessToken);
+            return done(null, userObj);
           } else {
             db.query(insertQuery, [username])
               .then(user => {
-                return done(null, accessToken);
+                return done(null, userObj);
               })
               .catch(err => console.log('INSERT QUERY', err));
           }
