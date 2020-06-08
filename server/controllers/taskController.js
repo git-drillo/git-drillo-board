@@ -21,6 +21,7 @@ taskController.getCommits = (req, res, next) => {
     })
     .then(res => res.json())
     .then(data=>{
+      console.log(data.length)
         for(let i = 0; i < data.length; i++){
           commits.push(data[i].commit.message)
         } console.log(commits)
