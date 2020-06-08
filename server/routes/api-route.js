@@ -2,8 +2,6 @@ const router = require("express").Router();
 const db = require("../db/postgres");
 require("dotenv/config");
 
-// What is this route used for? (KP)
-
 const taskController = require('../controllers/taskController.js');
 
 /**
@@ -15,7 +13,6 @@ router.get("/", (req, res) => {
   res.sendStatus(200);
 });
 
-// What is this route used for? (KP)
 
 /**
  * @route   GET /api
@@ -26,15 +23,6 @@ router.post("/", (req, res) => {
   res.send("Hitting api POST endpoint");
 });
 
-// /**
-//  * @route   POST /api/create-project
-//  * @desc    Adds the project information to projects and users_projects tables
-//  * @desc    and adds associated collaborators to users and users_projects tables
-//  * @access  Public (should be private)
-//  */
-// router.post('/create-project/'), (req,res,next) => {
-
-// }
 
 /**
  * @route   GET /api/projects/
