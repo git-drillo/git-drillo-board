@@ -7,26 +7,25 @@
 
 import React from 'react';
 
-// on expand
-// task id
-//
-
-function Task (props) {
+function Task(props) {
   let taskStyling = {};
   if (props.taskInformation.pending) {
-    taskStyling = { border: 'thin solid red' }
+    taskStyling = { border: 'thin solid red' };
   } else {
-    taskStyling = { border: 'thin solid black' }
+    taskStyling = { border: 'thin solid black' };
   }
 
-  return(
+  const { editTask, taskInformation } = props;
+  const { task, tag, assignedDev, commitMsg, commitUrl } = taskInformation;
+
+  return (
     <div className="individualTask" style={taskStyling}>
-      <p> Task: {props.taskInformation.task} </p>
-      <p> Tag: {props.taskInformation.tag} </p>
-      <p> AssignedDev: {props.taskInformation.assignedDev} </p>
-      <p> Commit: {props.taskInformation.commitMessage} </p>
-      <p> CommitUrl: {props.taskInformation.commitUrl} </p>
-      <button onClick={props.taskButtonEdit}> edit </button>
+      <p> Task: {task} </p>
+      <p> Tag: {tag} </p>
+      <p> AssignedDev: {assignedDev} </p>
+      <p> Commit: {commitMsg} </p>
+      <p> CommitUrl: {commitUrl} </p>
+      <button onClick={editTask}> edit </button>
     </div>
   );
 }
