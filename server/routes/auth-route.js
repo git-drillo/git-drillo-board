@@ -3,8 +3,6 @@ const passport = require('passport');
 
 const authController = require('../controllers/authController.js');
 
-//TEMPORARY FOR TESTING
-const taskController = require('../controllers/taskController.js');
 //github login
 
 //  using passport to authenticate the github
@@ -18,7 +16,7 @@ router.get(
 );
 
 /**
- * @route   GET 
+ * @route   GET
  * @desc    <desc>
  * @access  Public
  */
@@ -27,7 +25,7 @@ router.get('/fail', (req, res) => {
 });
 
 /**
- * @route   GET 
+ * @route   GET
  * @desc    <desc>
  * @access  Public
  */
