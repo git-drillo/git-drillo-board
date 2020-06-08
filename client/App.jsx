@@ -25,7 +25,7 @@ function App() {
         {/* Working on landing page container still */}
         <Route exact path="/dashboard" component={() => <DashboardContainer />} />
         {/* <Route exact path="/dashboard" component={() => <h1>Logged in</h1>} /> */}
-        <Route exact path="/projectBoard" component={() => <ProjectPageContainer />} />
+        <Route exact path="/project-board" component={() => <ProjectPageContainer />} />
       </Switch>
     </Provider>
   );

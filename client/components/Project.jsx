@@ -6,9 +6,11 @@
 */
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Project (props) {
-  const {id, title, isOwner } = props.projectInformation
+  const {id, repo, isOwner } = props.projectInformation
+  console.log(props.projectInformation, 'project information')
   let projectStyling = {};
   if (isOwner) {
     projectStyling = { border: 'thin solid red' }
@@ -18,7 +20,7 @@ function Project (props) {
 
   return(
     <div className="individualProject" style={projectStyling} project={id}>
-      <p> {title} </p>
+      <Link to={`project-board/${repo}`}> {repo} </Link>
     </div>
   );
 }
