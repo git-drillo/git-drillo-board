@@ -21,9 +21,7 @@ class LandingPageContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      header: {
-        title: 'Git Drillo Board',
-      },
+      // array of projects specific to the user id
       userProjects: [
         {
           projectName: 'foobar',
@@ -49,20 +47,25 @@ class LandingPageContainer extends Component {
           projectName: 'foobar',
           projectOwn: false,
         },
-      ]
-    }
+      ],
+    };
   }
 
   createNewProject = () => {
-    console.log('create new project function has been invoked')
-  }
+    // send a response to the database
+    // pop up a form for the use to fill out with the repo link
+    console.log('create new project function has been invoked');
+  };
 
   render() {
     return (
       <div>
         {/* <TitleBar header={this.state.header} returnToProjectsBoard={this.returnToProjectsBoard} /> */}
         <div>
-          <LandingPage projectsArray={this.state.userProjects} createNewProject={this.createNewProject} />
+          <LandingPage
+            projectsArray={this.state.userProjects}
+            createNewProject={this.createNewProject}
+          />
         </div>
       </div>
     );
@@ -71,7 +74,6 @@ class LandingPageContainer extends Component {
 
 // export default connect(mapStateToProps, mapDispatchToProps)(LandingPageContainer);
 export default LandingPageContainer;
-
 
 // const loginState = {
 //   loginRedirect: function () { /* go to landing page AFTER github auth redirect */ },
@@ -113,7 +115,6 @@ export default LandingPageContainer;
 
 //   createNewTask: function() {},
 // }
-
 
 // let toDo = [
 //   { task: 'Create login button',

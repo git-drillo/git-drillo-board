@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const db = require('../db/postgres');
-require('dotenv/config')
+require('dotenv/config');
 
 /**
  * @route   GET /api
@@ -27,8 +27,7 @@ router.post('/', (req, res) => {
  */
 router.get('/projects/:id', async (req, res, next) => {
   try {
-    console.log(process.env.PG_URI)
-    const id = req.params.id
+    const id = req.params.id;
     const query = `
     SELECT * FROM projects
     WHERE project_owner = '${id}';`;
@@ -36,11 +35,9 @@ router.get('/projects/:id', async (req, res, next) => {
     const result = await db.query(query);
 
     return res.json({ data: result.rows });
-
   } catch ({ message: msg }) {
     return next({ msg });
   }
-
 });
 
 module.exports = router;

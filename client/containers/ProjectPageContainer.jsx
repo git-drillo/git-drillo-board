@@ -21,62 +21,71 @@ class BoardPageContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      header: {
-        title: 'Git Drillo Board',
-      },
       inProgress: [
         {
           task: 'Create login button',
-          tag: 'frontend',
+          status: 'inProgress',
           assignedDev: 'none',
           userId: '7bc',
           commitMessage: 'done with button creation',
           commitUrl: 'http://github/foo/bar',
           pending: false,
+          commit_sha: 'longString',
         },
       ],
       done: [
         {
           task: 'Create login button',
-          tag: 'frontend',
+          status: 'done',
           assignedDev: 'none',
           userId: '7bc',
           commitMessage: 'done with button creation',
           commitUrl: 'http://github/foo/bar',
           pending: true,
+          commit_sha: 'longString',
         },
         {
           task: 'Create login button',
-          tag: 'frontend',
+          status: 'done',
           assignedDev: 'none',
           userId: '7bc',
           commitMessage: 'done with button creation',
           commitUrl: 'http://github/foo/bar',
           pending: false,
+          commit_sha: 'longString',
         },
         {
           task: 'Create login button',
-          tag: 'frontend',
+          status: 'done',
           assignedDev: 'none',
           userId: '7bc',
           commitMessage: 'done with button creation',
           commitUrl: 'http://github/foo/bar',
           pending: true,
+          commit_sha: 'longString',
         },
       ],
     };
   }
 
   createNewTask = () => {
+    // post a new task with a specific status
     console.log('new task created functionality has been invoked');
   };
 
   taskButtonEdit = () => {
+    // edit the task name
     console.log('edit task button functionality has been invoked');
   };
 
   returnToProjectsBoard = () => {
+    // back button
     console.log('return to Projects Page functionality has been invoked');
+  };
+
+  deleteTask = () => {
+    // delete any tag
+    console.log('delete tag functionality has been invoked');
   };
 
   render() {
