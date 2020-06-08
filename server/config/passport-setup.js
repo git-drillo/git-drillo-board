@@ -39,21 +39,36 @@ passport.use(
        **/
 
       const { username } = profile;
-      console.log('PASSPORT CALLBACK FIRED FOR USER: ', username);
+      // console.log('PASSPORT CALLBACK FIRED FOR USER: ', username);
 
-      const selectQuery = `SELECT * FROM users WHERE githandle='${username}'`;
-      const insertQuery = `INSERT INTO users (id, githandle) VALUES (uuid_generate_v4(), $1) RETURNING *`;
+      const selectQuery = `
+        SELECT * FROM users 
+        WHERE githandle='${username}'`;
+
+      const insertQuery = `
+        INSERT INTO users (id, githandle) 
+        VALUES (uuid_generate_v4(), $1) 
+        RETURNING *`;
+
+      // Object to pass on to next middleware
+      // This will store the accessToken and user's id
+      const body = { accessToken };
+
       db.query(selectQuery)
         .then(data => {
-          if (data.rows.length > 0) {
-            return done(null, accessToken);
-          } else {
-            db.query(insertQuery, [username])
-              .then(user => {
-                return done(null, accessToken);
-              })
-              .catch(err => console.log('INSERT QUERY', err));
+          // User exists in database
+          if (data.rows.length) {
+            body.userId = data.rows[0].id;
+            return done(null, body);
           }
+
+          // User does not exist, add user to database
+          db.query(insertQuery, [username])
+            .then(user => {
+              body.userId = user.rows[0].id;
+              return done(null, body);
+            })
+            .catch(err => console.log('INSERT QUERY', err));
         })
         .catch(err => console.log('SELECT QUERY', err));
     }
@@ -68,7 +83,7 @@ passport.use(
  * from the database when deserializing.
  **/
 passport.serializeUser(function (user, done) {
-  console.log('IN SERIALIZE ', user)
+  // console.log('IN SERIALIZE ', user);
   done(null, user);
 });
 
