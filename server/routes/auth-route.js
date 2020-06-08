@@ -16,7 +16,7 @@ router.get(
 );
 
 /**
- * @route   GET 
+ * @route   GET /
  * @desc    <desc>
  * @access  Public
  */
