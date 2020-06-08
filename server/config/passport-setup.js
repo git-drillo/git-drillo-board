@@ -50,6 +50,7 @@ passport.use(
         VALUES (uuid_generate_v4(), $1) 
         RETURNING *`;
 
+
       // Object to pass on to next middleware
       // This will store the accessToken and user's id
       const body = { accessToken };

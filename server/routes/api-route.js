@@ -4,6 +4,7 @@ require('dotenv/config');
 
 // Bring in controllers
 const dbController = require('../controllers/dbController');
+const taskController = require('../controllers/taskController.js');
 
 /**
  * @route   GET /api/projects/
@@ -138,6 +139,13 @@ router.post('/tasks/:project_id', async (req, res) => {
   } catch ({ message: msg }) {
     return res.status(400).json({ msg });
   }
+});
+
+router.get('/refresh', 
+taskController.getCommits, 
+taskController.parseCommits,
+(req, res) => {
+  res.sendStatus(200);
 });
 
 module.exports = router;
