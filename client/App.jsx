@@ -25,7 +25,7 @@ class App extends Component {
             <Route exact path="/" component={() => <LoginPage />} />
             {/* Working on landing page container still */}
             {/* <Route exact path="/dashboard" component={() => <LandingPageContainer />} /> */}
-            <Route exact path="/dashboard" component={() => <h1>Logged in</h1>} />
+            {/* <Route exact path="/dashboard" component={() => <h1>Logged in</h1>} /> */}
             <Route exact path="/projectBoard" component={() => <ProjectPageContainer />} />
           </Switch>
         </main>
