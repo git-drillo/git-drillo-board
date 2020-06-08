@@ -5,6 +5,8 @@ require("dotenv/config");
 // Bring in controllers
 const dbController = require("../controllers/dbController");
 const taskController = require("../controllers/taskController.js");
+const authController = require("../controllers/authController.js");
+const projectController = require("../controllers/projectController.js");
 
 /**
  * @route   GET /api/projects/
@@ -63,8 +65,13 @@ router.get("/tasks/:project_id", async (req, res) => {
  */
 router.post(
   "/create-project",
-  // middleware
-  /*dbController.getUserFromUserIdCookie,*/ async (req, res) => {
+  dbController.getUserFromUserIdCookie,
+  authController.getAccessToken,
+  // projectController.getRepos,
+  // projectController.doesRepoExist,
+  // projectController.getRepoOwner,
+  // projectController.getCollaborators,
+  async (req, res) => {
     try {
       // Temporary hardcoded user id -> waiting to test with the actual browser cookies
       // const userId = '14e33237-9cbb-43d3-9332-2e5641d712fb';

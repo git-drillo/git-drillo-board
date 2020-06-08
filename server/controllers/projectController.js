@@ -19,9 +19,9 @@ projectController.getRepos = (req, res, next) => {
     .then((res) => res.json())
     .then((data) => {
       res.locals.allRepos = [...data];
+      next();
     })
     .catch((err) => console.log("ERROR: ", err));
-  return next();
 };
 
 /**
@@ -46,7 +46,7 @@ projectController.doesRepoExist = (req, res, next) => {
       status(400).json({ isCreated: isCreated });
     }
   }
-  return next();
+  next();
 };
 
 /**
@@ -60,7 +60,7 @@ projectController.getRepoOwner = (req, res, next) => {
   const owner = targetRepo.owner.login;
   res.locals.owner = owner;
 
-  return next();
+  next();
 };
 
 /**
@@ -87,6 +87,7 @@ projectController.getCollaborators = (req, res, next) => {
         }
       }
       res.locals.collaborators = collaborators;
+      next();
     })
     .catch((err) => console.log("ERROR: ", err));
 };
