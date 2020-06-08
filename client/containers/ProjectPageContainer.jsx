@@ -5,112 +5,46 @@
  * @description presentation component that renders 3 Category components
  */
 
-import React, { Component } from 'react';
-import Header from '../components/Header.jsx';
+import React from 'react';
+import { connect } from 'react-redux';
+import * as projectActionCreators from '../actions/projectActions';
+import { bindActionCreators } from 'redux';
 import Category from '../components/Category.jsx';
 
-const mapStateToProps = state => {
-  // provide pertinent state here
-};
-
-const mapDispatchToProps = dispatch => {
-  // create functions that will dispatch action creators
-};
-
-class BoardPageContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      inProgress: [
-        {
-          task: 'Create login button',
-          status: 'inProgress',
-          assignedDev: 'none',
-          userId: '7bc',
-          commitMessage: 'done with button creation',
-          commitUrl: 'http://github/foo/bar',
-          pending: false,
-          commit_sha: 'longString',
-        },
-      ],
-      done: [
-        {
-          task: 'Create login button',
-          status: 'done',
-          assignedDev: 'none',
-          userId: '7bc',
-          commitMessage: 'done with button creation',
-          commitUrl: 'http://github/foo/bar',
-          pending: true,
-          commit_sha: 'longString',
-        },
-        {
-          task: 'Create login button',
-          status: 'done',
-          assignedDev: 'none',
-          userId: '7bc',
-          commitMessage: 'done with button creation',
-          commitUrl: 'http://github/foo/bar',
-          pending: false,
-          commit_sha: 'longString',
-        },
-        {
-          task: 'Create login button',
-          status: 'done',
-          assignedDev: 'none',
-          userId: '7bc',
-          commitMessage: 'done with button creation',
-          commitUrl: 'http://github/foo/bar',
-          pending: true,
-          commit_sha: 'longString',
-        },
-      ],
-    };
-  }
-
-  createNewTask = () => {
-    // post a new task with a specific status
-    console.log('new task created functionality has been invoked');
-  };
-
-  taskButtonEdit = () => {
-    // edit the task name
-    console.log('edit task button functionality has been invoked');
-  };
-
-  returnToProjectsBoard = () => {
-    // back button
-    console.log('return to Projects Page functionality has been invoked');
-  };
-
-  deleteTask = () => {
-    // delete any tag
-    console.log('delete tag functionality has been invoked');
-  };
-
-  render() {
-    return (
-      <div>
-        <Header header={this.state.header} returnToProjectsBoard={this.returnToProjectsBoard} />
-        <div className="BoardPageContainer">
-          <Category
-            categoryName="In Progress"
-            createNewTask={this.createNewTask}
-            taskButtonEdit={this.taskButtonEdit}
-            array={this.state.inProgress}
-          />
-          <Category
-            categoryName="Done"
-            createNewTask={this.createNewTask}
-            taskButtonEdit={this.taskButtonEdit}
-            array={this.state.done}
-          />
-        </div>
-      </div>
-    );
-  }
+function ProjectPageContainer(props) {
+  const { done, inProgress, createTask, deleteTask, editTask } = props;
+  return (
+    <div className="BoardPageContainer">
+      <Category
+        categoryName="In Progress"
+        createTask={createTask}
+        editTask={editTask}
+        array={inProgress}
+      />
+      <Category
+        categoryName="Done"
+        createTask={createTask}
+        editTask={editTask}
+        array={done}
+      />
+    </div>
+  );
 }
 
-// export default connect(mapStateToProps, mapDispatchToProps)(BoardPageContainer);
+const mapStateToProps = state => {
+  return {
+    done: state.project.done,
+    inProgress: state.project.inProgress,
+  };
+};
 
-export default BoardPageContainer;
+const mapDispatchToProps = dispatch => bindActionCreators(projectActionCreators, dispatch);
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     createTask: () => dispatch(createTask()),
+//     deleteTask: () => dispatch(deleteTask()),
+//   };
+// };
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectPageContainer);
