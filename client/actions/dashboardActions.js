@@ -24,6 +24,15 @@ export function getProjects(id) {
   };
 }
 
+/**
+ * Creates a project
+ */
+export function createProject() {
+  return function (dispatch) {
+    axios.post()
+  }
+}
+
 // Route: /dashboard
 // Route /projectboard
 // landing page is landing page container
