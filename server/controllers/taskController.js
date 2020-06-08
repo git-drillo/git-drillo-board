@@ -12,8 +12,6 @@ taskController.getCommits = async (req, res, next) => {
   try{
     console.log('INSDE GET-COMMITS')
     aToken = res.locals.accessToken;
-    // const { user: username } = req.user;
-
     //frontend will send a post request /refresh with the repo name 
     //will be accessible in the req.body
 
@@ -33,16 +31,15 @@ taskController.getCommits = async (req, res, next) => {
       })
       .then(res => res.json())
       .then(data=>{
-        console.log(data.length)
           for(let i = 0; i < data.length; i++){
             commits.push(data[i].commit.message.replace(/'/g,''));
             commitUrls.push(data[i].commit.url);
-          }console.log(commitUrls)
+          }
           res.locals.commitMessages = {
             commits,
             commitUrls,
           }
-      next();
+        next();
       })
       .catch(err => next(err))
     })
@@ -92,11 +89,5 @@ taskController.parseCommits = async (req, res, next) => {
     console.log('ERROR: ', err)
   }
 }
-
-taskController.insertTaskToDatabase = (req, res , next) => {
-    //take task data from frontend and add to database
-    //with respective commit messagse
-}
-
 
 module.exports = taskController;
