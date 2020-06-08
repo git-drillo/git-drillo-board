@@ -66,33 +66,49 @@ router.post(
   // middleware
   /*dbController.getUserFromUserIdCookie,*/ async (req, res) => {
     try {
-      // const userId = req.cookies.userId;
-
       // Temporary hardcoded user id -> waiting to test with the actual browser cookies
-      const userId = '14e33237-9cbb-43d3-9332-2e5641d712fb';
+      // const userId = '14e33237-9cbb-43d3-9332-2e5641d712fb';
+      const userId = req.cookies.userId;
 
       // Cannot use controller until cookies are accessible
-      // const user = res.locals.githandle;
+      const user = res.locals.username;
       const projectName = req.body.repo;
 
-      const projectsQuery = `
-      INSERT INTO projects (id, repo, project_owner)
-      VALUES (uuid_generate_v4(), $1, $2)
-      RETURNING *;`;
+      // Get collaborators
+      const collaborators = res.locals.collaborators;
 
+      const projectsQuery = `
+        INSERT INTO projects (id, repo, project_owner)
+        VALUES (uuid_generate_v4(), $1, $2)
+        RETURNING *;`;
+
+      const usersProjectsQuery = `
+        INSERT INTO users_projects (id, user_id, project_id, isOwner)
+        VALUES (uuid_generate_v4(), $1, $2, $3);`;
+
+      const usersQuery = `
+        INSERT INTO users (id, githandle)
+        VALUES (uuid_generate, $1)
+        ON CONFLICT (githandle) DO NOTHING;`;
+
+      // Add new project to projects table
       const projectsResult = await db.query(projectsQuery, [projectName, userId]);
       const { id: projectId, repo } = projectsResult.rows[0];
 
-      const usersProjectsQuery = `
-      INSERT INTO users_projects (id, user_id, project_id, isOwner)
-      VALUES (uuid_generate_v4(), $1, $2, 't');`;
+      // 
+      await db.query(usersProjectsQuery, [userId, projectId, 't']);
 
-      await db.query(usersProjectsQuery, [userId, projectId]);
+      // Add collaborators to users_projects table and users table
+      for (let githandle of collaborators) {
+        await db.query(usersProjectsQuery, [githandle]);
+        await db.query(usersQuery, [githandle]);
+      }
 
       res.json({
         message: `Successfully started project`,
         repo,
-        // user,
+        user,
+        collaborators,
       });
     } catch ({ message }) {
       res.status(400).json({
