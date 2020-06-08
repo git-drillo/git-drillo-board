@@ -9,18 +9,37 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getProjects, createProject } from '../actions/dashboardActions';
 import Dashboard from '../components/Dashboard.jsx';
+import TitleBar from '../components/TitleBar.jsx';
 
 class DashboardContainer extends React.Component {
   componentDidMount() {
     this.props.getProjects();
   }
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      userName: 'fizzbuzz',
+      createNewProjectPopUp: false,
+    }
+  }
+
+  createNewProject = () => {
+    this.setState({
+      createNewProjectPopUp: !this.state.createNewProjectPopUp
+    });
+  }
+
+  refresh = () => {
+    console.log('"refresh"');
+  }
+
   render() {
     const { projects, createProject } = this.props;
     return (
       <div>
-        {/* <TitleBar header={this.state.header} returnToProjectsBoard={this.returnToProjectsBoard} /> */}
-        <Dashboard projects={projects} createProject={createProject} />
+        <TitleBar header={this.state.userName} refresh={this.refresh} redirectRoute="/" redirectMessage="Back to login" />
+        <Dashboard projects={projects} /*createProject={createProject}*/ createNewProject ={this.createNewProject} createNewProjectToggle={this.state.createNewProjectPopUp}/>
       </div>
     );
   }

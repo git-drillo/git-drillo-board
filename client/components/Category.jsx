@@ -7,9 +7,10 @@
 
 import React from 'react';
 import Task from './Task.jsx';
+import NewTaskPopUp from './NewTaskPopUp.jsx'
 
 function Category(props) {
-  const { categoryName, createTask, array, editTask } = props;
+  const { categoryName, createTask, array, editTask, popUpToggle, createNewTask } = props;
   const renderedTasksArray = [];
   for (let i = 0; i < array.length; i++) {
     let task = array[i];
@@ -19,7 +20,10 @@ function Category(props) {
     <div className="categories">
       <h4>{categoryName}</h4>
       {renderedTasksArray}
-      <button onClick={createTask}> + Add another card </button>
+      <button onClick={createNewTask}> + Add another card </button>
+      {props.popUpToggle ?
+         <NewTaskPopUp
+          closePopUp={props.createNewTask} /> : null}
     </div>
   );
 }
