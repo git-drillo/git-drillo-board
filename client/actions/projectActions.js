@@ -22,10 +22,9 @@ export function getProjectTasks(id) {
 /**
  * Create a new task for a project
  * @param {number} id The project id
+ * @param {object} task The assigned task with assignedDev, nickname, and description 
  */
 export function createTask(id, task) {
-  console.log('creating task');
-  return;
   return function (dispatch) {
     axios
       .post(`/api/tasks/${id}`, task)

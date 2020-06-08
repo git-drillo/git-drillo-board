@@ -16,7 +16,7 @@ router.get(
 );
 
 /**
- * @route   GET 
+ * @route   GET
  * @desc    <desc>
  * @access  Public
  */
@@ -25,7 +25,7 @@ router.get('/fail', (req, res) => {
 });
 
 /**
- * @route   GET 
+ * @route   GET
  * @desc    <desc>
  * @access  Public
  */
