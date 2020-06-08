@@ -10,7 +10,7 @@ const taskController = {};
 
 taskController.getCommits = async (req, res, next) => {
   try{
-    console.log('inside taskController getCommits')
+    console.log('INSDE GET-COMMITS')
     aToken = res.locals.accessToken;
     // const { user: username } = req.user;
 
@@ -18,12 +18,10 @@ taskController.getCommits = async (req, res, next) => {
     //will be accessible in the req.body
 
     const { repo } = req.body;
-
-    console.log('COOKIES:', req.cookies)
     const { userId } = req.cookies;
     res.locals.user_id = userId;
-    const query = `SELECT githandle FROM users WHERE id='${userId}';`;
 
+    const query = `SELECT githandle FROM users WHERE id='${userId}';`;
     await db.query(query)
     .then(data=>{
       const { githandle } = data.rows[0];
@@ -73,7 +71,7 @@ taskController.parseCommits = async (req, res, next) => {
     //database's tasks to ispending or not
     //based on the suffix of the commit message
     try{ 
-      console.log('INSIDE PARSECOMMITS')
+      console.log('INSIDE PARSE-COMMITS')
       const { commits } = res.locals.commitMessages;
       const { commitUrls } = res.locals.commitMessages;
             
