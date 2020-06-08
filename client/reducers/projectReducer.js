@@ -65,9 +65,9 @@ export default function projectReducer(state = initialState, action) {
         ...state,
         inProgress: inProgressList,
       };
-    
+
     case REFRESH_TASKS:
-      { done, inProjess}
+      { done, inProjess }
     default:
       return state;
   }

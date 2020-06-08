@@ -10,23 +10,34 @@ import { connect } from 'react-redux';
 import * as projectActionCreators from '../actions/projectActions';
 import { bindActionCreators } from 'redux';
 import Category from '../components/Category.jsx';
+import TitleBar from '../components/TitleBar.jsx';
 
 function ProjectPageContainer(props) {
-  const { done, inProgress, createTask, deleteTask, editTask } = props;
+  const { done, inProgress, createTask, deleteTask, editTask, NewTaskPopUpToggle } = props;
+  constructor
+  let NewTaskPopUpToggle = true;
+  const newTaskFormPopUp = () => {
+
+  }
   return (
-    <div className="BoardPageContainer">
-      <Category
-        categoryName="In Progress"
-        createTask={createTask}
-        editTask={editTask}
-        array={inProgress}
-      />
-      <Category
-        categoryName="Done"
-        createTask={createTask}
-        editTask={editTask}
-        array={done}
-      />
+    <div>
+      <TitleBar />
+      <div className="BoardPageContainer">
+        <Category
+          NewTaskPopUpToggle={NewTaskPopUpToggle}
+          categoryName="In Progress"
+          createTask={createTask}
+          editTask={editTask}
+          array={inProgress}
+        />
+        <Category
+          NewTaskPopUpToggle={NewTaskPopUpToggle}
+          categoryName="Done"
+          createTask={createTask}
+          editTask={editTask}
+          array={done}
+        />
+      </div>
     </div>
   );
 }
