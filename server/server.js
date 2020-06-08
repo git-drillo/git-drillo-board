@@ -17,13 +17,8 @@ app.use(passport.initialize());
 // Body Parsing Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-<<<<<<< HEAD
-app.use(passport.initialize());
-// app.use(passport.serializeUser());
-=======
 
 // Cookie Parsing Middleware
->>>>>>> master
 app.use(cookieParser());
 
 // Use routes

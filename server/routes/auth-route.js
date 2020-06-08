@@ -39,7 +39,6 @@ router.get(
     failureRedirect: '/fail',
   }),
   authController.saveAccessToken,
-  taskController.getCommits,//TEMPORARY FOR TESTING
   (req, res) => {
     //if successful authentication:
 

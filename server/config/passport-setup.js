@@ -50,40 +50,17 @@ passport.use(
         VALUES (uuid_generate_v4(), $1) 
         RETURNING *`;
 
+
       // Object to pass on to next middleware
       // This will store the accessToken and user's id
       const body = { accessToken };
 
-<<<<<<< HEAD
-      const selectQuery = `SELECT * FROM users WHERE githandle='${username}'`;
-      const insertQuery = `INSERT INTO users (id, githandle) VALUES (uuid_generate_v4(), $1) RETURNING *`;
-
-      // const serializedToken = passport.serialize(accessToken,);
-      // console.log(serializedToken);
-
-      const userObj = {
-        user: username,
-        token: accessToken
-      }
-
-      db.query(selectQuery)
-        .then(data => {
-          if (data.rows.length > 0) {
-            return done(null, userObj);
-          } else {
-            db.query(insertQuery, [username])
-              .then(user => {
-                return done(null, userObj);
-              })
-              .catch(err => console.log('INSERT QUERY', err));
-=======
       db.query(selectQuery)
         .then(data => {
           // User exists in database
           if (data.rows.length) {
             body.userId = data.rows[0].id;
             return done(null, body);
->>>>>>> master
           }
 
           // User does not exist, add user to database
@@ -107,10 +84,7 @@ passport.use(
  * from the database when deserializing.
  **/
 passport.serializeUser(function (user, done) {
-<<<<<<< HEAD
-=======
   // console.log('IN SERIALIZE ', user);
->>>>>>> master
   done(null, user);
 });
 
