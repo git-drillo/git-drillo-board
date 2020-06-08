@@ -3,21 +3,22 @@ import { GET_PROJECTS } from './types';
 
 /**
  * Retrieves all projects associated with a particular user
- * @param {number} id The user id
+ * The user id is supplied through cookies
  */
-export function getProjects(id) {
+export function getProjects() {
   return function (dispatch) {
     axios
-      .get(`/api/projects/${id}`)
-      .then(result =>
+      .get(`/api/projects`)
+      .then(result => {
+        console.log(result)
         dispatch({
           type: GET_PROJECTS,
           payload: result.data,
         })
-      )
+      })
       .catch(({ message }) =>
         console.log({
-          log: 'ERROR in getActions action creator',
+          log: 'ERROR in getProjects action creator',
           message,
         })
       );

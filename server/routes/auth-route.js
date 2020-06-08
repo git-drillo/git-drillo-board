@@ -23,7 +23,7 @@ router.get(
  * @access  Public
  */
 router.get('/fail', (req, res) => {
-  res.status(200).send('FAILURE TO AUTHENTICATE');
+  res.status(401).send('FAILURE TO AUTHENTICATE');
 });
 
 /**

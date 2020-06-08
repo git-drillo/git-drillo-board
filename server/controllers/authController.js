@@ -37,12 +37,24 @@ const authController = {};
 // .catch(err => console.log('ERROR: ', err))
 
 authController.saveAccessToken = (req, res, next) => {
+<<<<<<< HEAD
   const { token: accessToken } = req.user;
   res.locals.accessToken = accessToken;
 
   res.cookie('accessToken', accessToken, { maxAge: 360000 });
+=======
+  const { user } = req;
 
-  console.log('COOKIE: ', req.cookies);
+  // Purpose of locals storage?
+  res.locals.accessToken = user.accessToken;
+  res.locals.userId = user.userId;
+>>>>>>> master
+
+  res.cookie('accessToken', user.accessToken, { maxAge: 360000 });
+  res.cookie('userId', user.userId, { maxAge: 360000 });
+  // console.log('ACCESS TOKEN', res.locals.accessToken);
+
+  // console.log('COOKIE: ', req.cookies);
   next();
 };
 

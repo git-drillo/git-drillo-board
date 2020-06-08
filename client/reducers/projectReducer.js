@@ -1,4 +1,4 @@
-import { GET_PROJECT_TASKS, CREATE_TASK } from '../actions/types';
+import { GET_PROJECT_TASKS, CREATE_TASK, REFRESH_TASKS } from '../actions/types';
 
 const initialState = {
   inProgress: [
@@ -50,6 +50,7 @@ const initialState = {
 export default function projectReducer(state = initialState, action) {
   switch (action.type) {
     case GET_PROJECT_TASKS:
+    case REFRESH_TASKS:
       const { done, inProgress } = action.payload;
       return {
         ...state,
@@ -57,12 +58,16 @@ export default function projectReducer(state = initialState, action) {
         inProgress,
       };
     case CREATE_TASK:
+      // Update todo list without mutating state
       const inProgressList = state.inProgress.slice();
       inProgressList.push(action.payload);
       return {
         ...state,
         inProgress: inProgressList,
       };
+    
+    case REFRESH_TASKS:
+      { done, inProjess}
     default:
       return state;
   }
