@@ -40,12 +40,9 @@ passport.use(
 
       const { username } = profile;
       console.log('PASSPORT CALLBACK FIRED FOR USER: ', username);
-      console.log('ACCESS TOKEN: ', accessToken);
-
 
       const selectQuery = `SELECT * FROM users WHERE githandle='${username}'`;
       const insertQuery = `INSERT INTO users (id, githandle) VALUES (uuid_generate_v4(), $1) RETURNING *`;
-      console.log(done);
       db.query(selectQuery)
         .then(data => {
           if (data.rows.length > 0) {
@@ -55,10 +52,10 @@ passport.use(
               .then(user => {
                 return done(null, accessToken);
               })
-              .catch(err =>  console.log(err));
+              .catch(err => console.log('INSERT QUERY', err));
           }
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log('SELECT QUERY', err));
     }
   )
 );
@@ -71,19 +68,15 @@ passport.use(
  * from the database when deserializing.
  **/
 passport.serializeUser(function (user, done) {
-  // console.log('IN SERIALIZE ', user)
+  console.log('IN SERIALIZE ', user)
   done(null, user);
 });
 
-
-
 passport.deserializeUser(function (obj, done) {
   const findUserQuery = `SELECT * FROM users WHERE id = $1`;
-  console.log('IN HERE')
   db.query(findUserQuery, [id]).then(user => {
     done(null, user); // done is used to progress to the next middleware
   });
 });
-
 
 module.exports = passport.deserializeUser;
