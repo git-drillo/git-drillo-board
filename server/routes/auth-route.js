@@ -3,6 +3,8 @@ const passport = require('passport');
 
 const authController = require('../controllers/authController.js');
 
+//TEMPORARY FOR TESTING
+const taskController = require('../controllers/taskController.js');
 //github login
 
 //  using passport to authenticate the github
@@ -37,6 +39,7 @@ router.get(
     failureRedirect: '/fail',
   }),
   authController.saveAccessToken,
+  taskController.getCommits,//TEMPORARY FOR TESTING
   (req, res) => {
     //if successful authentication:
 

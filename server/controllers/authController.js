@@ -37,11 +37,10 @@ const authController = {};
 // .catch(err => console.log('ERROR: ', err))
 
 authController.saveAccessToken = (req, res, next) => {
-  const { user: accessToken } = req;
+  const { token: accessToken } = req.user;
   res.locals.accessToken = accessToken;
 
   res.cookie('accessToken', accessToken, { maxAge: 360000 });
-  console.log('ACCESS TOKEN', res.locals.accessToken);
 
   console.log('COOKIE: ', req.cookies);
   next();

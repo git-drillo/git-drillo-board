@@ -77,7 +77,6 @@ passport.use(
  * from the database when deserializing.
  **/
 passport.serializeUser(function (user, done) {
-  console.log('IN SERIALIZE ', user)
   done(null, user);
 });
 

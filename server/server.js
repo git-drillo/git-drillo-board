@@ -16,6 +16,7 @@ const apiRoute = require('./routes/api-route');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(passport.initialize());
+// app.use(passport.serializeUser());
 app.use(cookieParser());
 
 // Use routes
