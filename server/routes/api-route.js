@@ -4,6 +4,8 @@ require("dotenv/config");
 
 // What is this route used for? (KP)
 
+const taskController = require('../controllers/taskController.js');
+
 /**
  * @route   GET /api
  * @desc    Testing GET requests for api route
@@ -89,7 +91,11 @@ router.get("/tasks/:project_id", async (req, res) => {
  * @desc    Create a new task for a particular project
  * @access  Public (should be private)
  */
+<<<<<<< HEAD
 router.post("/api/tasks/:project_id", async (req, res) => {
+=======
+router.post('/tasks/:project_id', async (req, res) => {
+>>>>>>> edab955764f0c26fa7ca43b7b837f4bc9203e5f5
   try {
     // Get project id
     const id = req.params.id;
@@ -120,6 +126,13 @@ router.post("/api/tasks/:project_id", async (req, res) => {
   } catch ({ message: msg }) {
     return res.status(400).json({ msg });
   }
+});
+
+router.get('/refresh', 
+taskController.getCommits, 
+taskController.parseCommits,
+(req, res) => {
+  res.sendStatus(200);
 });
 
 module.exports = router;
