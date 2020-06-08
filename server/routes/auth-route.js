@@ -1,10 +1,15 @@
 const router = require('express').Router();
 const passport = require('passport');
+const cookieParser = require('cookie-parser');
+const fetch = require('node-fetch')
+
+const authController = require('../controllers/authController.js');
 
 //github login
 
 //  using passport to authenticate the github
 // (after requiring the passport-setup.js in the server.js and adding the appropriate /auth route)
+router.use(cookieParser())
 
 router.get(
   '/github',
@@ -29,19 +34,20 @@ router.get(
     //if failure to authenticate:
     //placeholder
     failureRedirect: '/fail',
-  }),
+  }), authController.saveAccessToken,
   (req, res) => {
     //Saved temporary code from req.query into res.locals.code
     // this temporary code will be used to request the user's access token from github
-    const { code } = req.query;
-    res.locals.code = code;
     //if successful authentication:
+
     console.log('SUCCESSFUL AUTHENTICATION');
     res.redirect('/dashboard');
   }
 );
 
-router
+// router.post('/dashboard', authController.getAccessToken, (req, res) => {
+//   res.status(200).send('yesyesyes')
+// });
 
 
 

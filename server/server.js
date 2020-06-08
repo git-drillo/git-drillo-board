@@ -2,8 +2,9 @@ const express = require('express');
 const path = require('path');
 const passportSetup = require('./config/passport-setup');
 const passport = require('passport');
-
+const cookieParser = require('cookie-parser');
 require('dotenv/config');
+
 
 const app = express();
 
@@ -15,10 +16,12 @@ const apiRoute = require('./routes/api-route');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(passport.initialize());
+app.use(cookieParser());
 
 // Use routes
 app.use('/auth', authRoute);
 app.use('/api', apiRoute);
+
 
 // Serve static files in production mode
 if (process.env.NODE_ENV === 'production') {
@@ -33,6 +36,7 @@ if (process.env.NODE_ENV === 'production') {
 
   // Handle redirections
   app.get('*', (req, res) => {
+    console.log('HERE HERE', req.cookies)
     res.sendFile(path.resolve(__dirname, '../client/index.html'));
   });
 }
