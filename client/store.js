@@ -1,12 +1,13 @@
-/**
- * @module  store.js
- * @author Jonathan Escamilla
- * @date Sat, Jun 6, 2020
- * @description Redux 'single source of truth'
- */
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers';
 
-import { createStore } from 'redux';
-
-const store = createStore(composeWithDevTools());
+const store = createStore(
+  rootReducer,
+  compose(
+    applyMiddleware(thunk),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
+);
 
 export default store;

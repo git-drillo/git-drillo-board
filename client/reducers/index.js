@@ -1,7 +1,12 @@
-/**
- * @module  index.js
- * @author
- * @date Sat, Jun 6, 2020
- * @description simply a place to combine reducers
-*/
+import { combineReducers } from 'redux';
+import authReducer from './authReducer';
+import dashboardReducer from './dashboardReducer';
+import projectReducer from './projectReducer';
 
+const rootReducer = combineReducers({
+  auth: authReducer,
+  dashboard: dashboardReducer,
+  project: projectReducer
+});
+
+export default rootReducer;

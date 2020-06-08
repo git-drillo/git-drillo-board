@@ -1,21 +1,48 @@
 const router = require('express').Router();
+const passport = require('passport');
+
+const authController = require('../controllers/authController.js');
+
+//github login
+
+//  using passport to authenticate the github
+// (after requiring the passport-setup.js in the server.js and adding the appropriate /auth route)
+
+router.get(
+  '/github',
+  passport.authenticate('github', {
+    scope: ['user:email'],
+  })
+);
 
 /**
- * @route   GET /auth
- * @desc    Allow users to sign into application using their Github account
+ * @route   GET 
+ * @desc    <desc>
  * @access  Public
  */
-router.get('/github', (req, res) => {
-  res.send('logging into github');
+router.get('/fail', (req, res) => {
+  res.status(401).send('FAILURE TO AUTHENTICATE');
 });
 
 /**
- * @route   GET /auth
- * @desc    Testing GET requests for auth route
+ * @route   GET 
+ * @desc    <desc>
  * @access  Public
  */
-router.get('/', (req, res) => {
-  res.send('Hitting auth GET endpoint!');
-});
+router.get(
+  '/github/callback',
+  passport.authenticate('github', {
+    //if failure to authenticate:
+    //placeholder
+    failureRedirect: '/fail',
+  }),
+  authController.saveAccessToken,
+  (req, res) => {
+    //if successful authentication:
+
+    console.log('SUCCESSFUL AUTHENTICATION');
+    res.redirect('/dashboard');
+  }
+);
 
 module.exports = router;

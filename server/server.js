@@ -1,5 +1,8 @@
 const express = require('express');
 const path = require('path');
+const cookieParser = require('cookie-parser');
+const passport = require('passport');
+require('./config/passport-setup');
 require('dotenv/config');
 
 const app = express();
@@ -8,9 +11,15 @@ const app = express();
 const authRoute = require('./routes/auth-route');
 const apiRoute = require('./routes/api-route');
 
+// Initialize passport
+app.use(passport.initialize());
+
 // Body Parsing Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Cookie Parsing Middleware
+app.use(cookieParser());
 
 // Use routes
 app.use('/auth', authRoute);
@@ -20,11 +29,22 @@ app.use('/api', apiRoute);
 if (process.env.NODE_ENV === 'production') {
   app.use('/dist', express.static(path.resolve(__dirname, '../client/dist')));
 
+  app.use('/assets', express.static(path.join(__dirname, '../client/assets')));
+
   // Home endpoint
   app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../client/index.html'));
   });
+
+  // Handle redirections
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../client/index.html'));
+  });
 }
+
+// app.get('/projectboard/:project_name', (req, res) => {
+//   res.status(200).send('On project board page');
+// });
 
 // Global Error handler
 app.use((err, req, res, next) => {
@@ -43,6 +63,6 @@ app.use((err, req, res, next) => {
   res.send(output);
 });
 
+// Server defaults to port 3000
 const PORT = process.env.PORT || 3000;
-
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

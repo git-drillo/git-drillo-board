@@ -6,11 +6,13 @@
  */
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = props => (
   <div className="Header">
-    <h1> {props.header.title} </h1>
-    <button onClick={props.dummyClick}> click me </button>
+    {/* <h1> Git-Drillo </h1> */}
+    <Link to="/">Git-Drillo</Link>
+    {/* <button onClick={props.returnToProjectsBoard}> Return to Projects Board </button> */}
   </div>
 );
 
