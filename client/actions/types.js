@@ -4,6 +4,7 @@ export const LOGOUT = 'LOGOUT';
 
 // Dashboard
 export const GET_PROJECTS = 'GET_PROJECTS';
+export const CREATE_PROJECT = 'CREATE_PROJECT';
 
 // Project dashboard
 export const GET_PROJECT_TASKS = 'GET_PROJECT_TASKS';

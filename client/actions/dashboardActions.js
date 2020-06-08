@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_PROJECTS } from './types';
+import { GET_PROJECTS, CREATE_PROJECT } from './types';
 
 /**
  * Retrieves all projects associated with a particular user
@@ -10,11 +10,10 @@ export function getProjects() {
     axios
       .get(`/api/projects`)
       .then(result => {
-        console.log(result)
         dispatch({
           type: GET_PROJECTS,
           payload: result.data,
-        })
+        });
       })
       .catch(({ message }) =>
         console.log({
@@ -26,23 +25,32 @@ export function getProjects() {
 }
 
 /**
- * Creates a project
+ * Creates a project from an existing Github repo
+ * @param {object} repo
  */
-export function createProject() {
+export function createProject(repo) {
   return function (dispatch) {
-    axios.post()
-  }
+    axios
+      .post('/api/create-project', repo)
+      .then(result => {
+        const { isCreated } = result
+        if (isCreated) {
+          dispatch({
+            type: CREATE_PROJECT,
+            payload: result.data,
+          })
+        } else {
+          dispatch({})
+        }
+      })
+      .catch(({ message }) =>
+        console.log({
+          log: 'ERROR in createProject action creator',
+          message,
+        })
+      );
+  };
 }
-
-// Route: /dashboard
-// Route /projectboard
-// landing page is landing page container
-
-// get existing repos
-
-// get existing collaborators for existing repo
-
-// redirecting
 
 // Retrieves pending projects? - stretch maybe
 // export function getPending(id) {
