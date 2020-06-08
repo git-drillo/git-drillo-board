@@ -20,76 +20,113 @@ const mapDispatchToProps = dispatch => ({
 class LandingPageContainer extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      header: {
+        title: 'Git Drillo Board',
+      },
+      userProjects: [
+        {
+          projectName: 'foobar',
+          projectOwn: true,
+        },
+        {
+          projectName: 'foobar',
+          projectOwn: true,
+        },
+        {
+          projectName: 'foobar',
+          projectOwn: true,
+        },
+        {
+          projectName: 'foobar',
+          projectOwn: false,
+        },
+        {
+          projectName: 'foobar',
+          projectOwn: true,
+        },
+        {
+          projectName: 'foobar',
+          projectOwn: false,
+        },
+      ]
+    }
+  }
+
+  createNewProject = () => {
+    console.log('create new project function has been invoked')
   }
 
   render() {
     return (
-      <div id="LandingContainer">
-        <Header />
-        <LandingPage />
+      <div>
+        {/* <TitleBar header={this.state.header} returnToProjectsBoard={this.returnToProjectsBoard} /> */}
+        <div>
+          <LandingPage projectsArray={this.state.userProjects} createNewProject={this.createNewProject} />
+        </div>
       </div>
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LandingPageContainer);
+// export default connect(mapStateToProps, mapDispatchToProps)(LandingPageContainer);
+export default LandingPageContainer;
 
 
+// const loginState = {
+//   loginRedirect: function () { /* go to landing page AFTER github auth redirect */ },
+// }
 
-const loginState = {
-  loginRedirect: function () { /* go to landing page AFTER github auth redirect */ },
-}
+// const landingPageState  = {
+//   userId: String, /* this should be the log in cookie code gathered from oauth */
+//   owner: String, /* name of the person from the oauth cookie */
 
-const landingPageState  = {
-  userId: String, /* this should be the log in cookie code gathered from oauth */
-  owner: String, /* name of the person from the oauth cookie */
+//   projects = [
+//     {
+//       projectName: '',
+//       project_id: '',
+//       userIsOwner: true,
+//     }
+//   ],
 
-  projects = [
-    {
-      projectName: '',
-      project_id: '',
-      userIsOwner: true,
-    }
-  ],
+//   onMount: function() { /* fetch request to gather all the information in db that matches the userId.  the token will be sent in the header */ },
 
-  onMount: function() { /* fetch request to gather all the information in db that matches the userId.  the token will be sent in the header */ },
+//   createNewProjectBoard: function() { /* create funcitonality */},
+//   redirectToProject: function(projectId) { /* go to boardPage displaying every category and task in  */},
 
-  createNewProjectBoard: function() { /* create funcitonality */},
-  redirectToProject: function(projectId) { /* go to boardPage displaying every category and task in  */},
+//   // render ( /* render all project. render those that are owned differently */),
+// }
 
-  // render ( /* render all project. render those that are owned differently */),
-}
+// const boardPageState = {
+//   userId: {
+//     repoUrl: '',
+//     owner_id: '',
+//     toDo: [],
+//     inProgress: [],
+//   },
+//   userId: {
+//     repoUrl: '',
+//     owner_id: '',
+//     toDo: [],
+//     inProgress: [],
+//   },
 
-const boardPageState = {
-  userId: {
-    repoUrl: '',
-    owner_id: '',
-    toDo: [],
-    inProgress: [],
-  },
-  userId: {
-    repoUrl: '',
-    owner_id: '',
-    toDo: [],
-    inProgress: [],
-  },
-
-  createNewTask: function() {},
-}
+//   createNewTask: function() {},
+// }
 
 
-let toDo = [
-  { task: 'Create login button',
-    tag: 'frontend',
-    assignedDev: 'none',
-    userId: 'string',
-    commitMessage: '',
-    commitUrl: '',
-  },
-]
-let inProgress = [
-  { task: 'Create login button', tag: 'frontend', assignedDev: 'none' },
-  { task: 'create basic project page', tag: 'frontend', assignedDev: 'none' },
-  { task: 'set up button to make new project', tag: 'fullstack', assignedDev: 'none' },
-  { task: 'set up button to make new project', tag: 'fullstack', assignedDev: 'none' },
-]
+// let toDo = [
+//   { task: 'Create login button',
+//     tag: 'frontend',
+//     assignedDev: 'none',
+//     userId: 'string',
+//     commitMessage: '',
+//     commitUrl: '',
+//   },
+// ]
+// let inProgress = [
+//   { task: 'Create login button', tag: 'frontend', assignedDev: 'none' },
+//   { task: 'create basic project page', tag: 'frontend', assignedDev: 'none' },
+//   { task: 'set up button to make new project', tag: 'fullstack', assignedDev: 'none' },
+//   { task: 'set up button to make new project', tag: 'fullstack', assignedDev: 'none' },
+// ]
