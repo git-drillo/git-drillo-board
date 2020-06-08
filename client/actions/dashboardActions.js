@@ -9,20 +9,30 @@ export function getProjects(id) {
   return function (dispatch) {
     axios
       .get(`/api/projects/${id}`)
-      .then(res =>
+      .then(result =>
         dispatch({
           type: GET_PROJECTS,
-          payload: res.data,
+          payload: result.data,
         })
       )
       .catch(({ message }) =>
         console.log({
           log: 'ERROR in getActions action creator',
-          message
+          message,
         })
       );
   };
 }
+
+/**
+ * Creates a project
+ */
+export function createProject() {
+  return function (dispatch) {
+    axios.post()
+  }
+}
+
 // Route: /dashboard
 // Route /projectboard
 // landing page is landing page container
@@ -32,7 +42,6 @@ export function getProjects(id) {
 // get existing collaborators for existing repo
 
 // redirecting
-
 
 // Retrieves pending projects? - stretch maybe
 // export function getPending(id) {

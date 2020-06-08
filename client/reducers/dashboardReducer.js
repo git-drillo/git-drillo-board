@@ -1,7 +1,32 @@
 import { GET_PROJECTS } from '../actions/types';
 
 const initialState = {
-  projects: [],
+  projects: [
+    {
+      title: 'foobar',
+      isOwner: true,
+    },
+    {
+      title: 'foobar',
+      isOwner: true,
+    },
+    {
+      title: 'foobar',
+      isOwner: true,
+    },
+    {
+      title: 'foobar',
+      isOwner: false,
+    },
+    {
+      title: 'foobar',
+      isOwner: true,
+    },
+    {
+      title: 'foobar',
+      isOwner: false,
+    },
+  ],
 };
 
 export default function dashboardRedcuer(state = initialState, action) {

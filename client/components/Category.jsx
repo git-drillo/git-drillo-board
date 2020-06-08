@@ -9,16 +9,17 @@ import React from 'react';
 import Task from './Task.jsx';
 
 function Category(props) {
+  const { categoryName, createTask, array, editTask } = props;
   const renderedTasksArray = [];
-  for (let i = 0; i < props.array.length; i++) {
-    let task = props.array[i];
-    renderedTasksArray.push(<Task key={i} taskInformation={task} taskButtonEdit={props.taskButtonEdit}/>);
+  for (let i = 0; i < array.length; i++) {
+    let task = array[i];
+    renderedTasksArray.push(<Task key={i} taskInformation={task} editTask={editTask} />);
   }
   return (
     <div className="categories">
-      <h4>{props.categoryName}</h4>
+      <h4>{categoryName}</h4>
       {renderedTasksArray}
-      <button onClick={props.createNewTask}> + Add another card </button>
+      <button onClick={createTask}> + Add another card </button>
     </div>
   );
 }
