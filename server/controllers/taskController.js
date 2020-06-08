@@ -14,6 +14,7 @@ taskController.getCommits = (req, res, next) => {
     const { user: username } = req.user;
     // https://api.github.com/repos/louisxsheid/git-drillo-board/commits
     //NEED TO IMPORT SPECIFIC REPO NAME
+    let commits = [];
     fetch(`https://api.github.com/repos/${username}/git-drillo-board/commits`, {
     method: 'get',
     params: { 'access_token': aToken }
@@ -21,11 +22,11 @@ taskController.getCommits = (req, res, next) => {
     .then(res => res.json())
     .then(data=>{
         for(let i = 0; i < data.length; i++){
-            console.log(data[i].commit.message)
-        }
+          commits.push(data[i].commit.message)
+        } console.log(commits)
+        next();
     })
-    .catch(err => console.log('ERROR: ', err))
-
+    .catch(err => next(err))
     //then store commits into locals
 }
 
