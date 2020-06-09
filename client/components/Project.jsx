@@ -14,7 +14,7 @@ function Project (props) {
   if (isOwner) {
     projectStyling = { border: 'thin solid blue' }
   } else {
-    projectStyling = { border: 'thin solid black' }
+    projectStyling = {  }
   }
 
   return(

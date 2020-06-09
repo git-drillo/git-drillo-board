@@ -38,7 +38,7 @@ class DashboardContainer extends React.Component {
     const { projects, createProject } = this.props;
     return (
       <div>
-        <TitleBar header={this.state.userName} refresh={this.refresh} redirectRoute="/" redirectMessage="Back to login" />
+        <TitleBar header={this.state.userName} refresh={this.refresh} redirectRoute="/" redirectMessage="Back to Login" />
         <Dashboard projects={projects} /*createProject={createProject}*/ createNewProject ={this.createNewProject} createNewProjectToggle={this.state.createNewProjectPopUp}/>
       </div>
     );

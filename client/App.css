@@ -3,6 +3,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+  font-family: Helvetica, sans-serif;
 }
 
 button {
@@ -25,21 +26,24 @@ button:hover {
 .Header {
   display: flex;
   justify-content: space-between;
+  /* margin: 25px; */
 }
 
 .BoardPageContainer {
-  /* border: 2px solid white; */
+  /* border: 2px solid black; */
   display: flex;
   justify-content: space-around;
   border-radius: 4px;
+  /* background-color: lightgray; */
 }
+
 .categories {
   text-align: center;
   margin: 25px;
   border-radius: 4px;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-  
+
 }
 
 .individualTask {
@@ -105,8 +109,12 @@ button:hover {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
+.individualProject:hover {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25), 0 2px 10px rgba(0,0,0,0.22);
+}
+
 .createProject {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: flex;
   font-size: 30px;
   width: 250px;
@@ -118,7 +126,9 @@ button:hover {
   align-content: center;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
-.createProject:hover{color: black;}
+.createProject:hover {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25), 0 2px 10px rgba(0,0,0,0.22);
+}
 
 .popup {
   position: fixed;
@@ -153,4 +163,7 @@ button:hover {
 .projectTitleBar {
   display: flex;
   justify-content: space-between;
+  margin: 30px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+  padding: 20px;
 }

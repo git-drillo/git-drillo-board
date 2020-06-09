@@ -40,7 +40,7 @@ class ProjectPageContainer extends React.Component {
     return (
 
       <div>
-        <TitleBar header={this.state.projectName} refresh={this.refresh} redirectRoute="/dashboard" redirectMessage="Back to dashboard" />
+        <TitleBar header={this.state.projectName} refresh={this.refresh} redirectRoute="/dashboard" redirectMessage="Back to Dashboard" />
 
         <div className="BoardPageContainer">
           <Category
