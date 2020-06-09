@@ -17,14 +17,18 @@ class ProjectPageContainer extends React.Component {
     super(props);
     this.state = {
       projectName: 'the ultimate foobar project',
-      createNewTaskPopUp: false,
+      newTaskPopUp: false,
     }
   }
 
   createNewTask = () => {
     this.setState({
-      createNewTaskPopUp: !this.state.createNewTaskPopUp
+      newTaskPopUp: !this.state.newTaskPopUp
     });
+  }
+
+  updateTaskToApproved = () => {
+    console.log('task now marked as approved and moved to done');
   }
 
   refresh = () => {
@@ -40,15 +44,16 @@ class ProjectPageContainer extends React.Component {
 
         <div className="BoardPageContainer">
           <Category
-            popUpToggle = {this.state.createNewTaskPopUp}
+            popUpToggle = {this.state.newTaskPopUp}
             createNewTask = {this.createNewTask}
             categoryName="In Progress"
             createTask={createTask}
             editTask={editTask}
             array={inProgress}
+            approve={this.updateTaskToApproved}
           />
           <Category
-            popUpToggle = {this.state.createNewTaskPopUp}
+            popUpToggle = {this.state.newTaskPopUp}
             createNewTask = {this.createNewTask}
             categoryName="Done"
             createTask={createTask}

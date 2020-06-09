@@ -10,7 +10,7 @@ export function getProjects() {
     axios
       .get(`/api/projects`)
       .then(result => {
-        console.log(result)
+        // console.log(result)
         dispatch({
           type: GET_PROJECTS,
           payload: result.data,

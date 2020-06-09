@@ -10,10 +10,9 @@ import { Link } from 'react-router-dom';
 
 function Project (props) {
   const {id, repo, isOwner } = props.projectInformation
-  console.log(props.projectInformation, 'project information')
   let projectStyling = {};
   if (isOwner) {
-    projectStyling = { border: 'thin solid red' }
+    projectStyling = { border: 'thin solid blue' }
   } else {
     projectStyling = { border: 'thin solid black' }
   }

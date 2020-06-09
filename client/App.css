@@ -28,27 +28,33 @@ button:hover {
 }
 
 .BoardPageContainer {
-  border: 2px solid white;
+  /* border: 2px solid white; */
   display: flex;
   justify-content: space-around;
   border-radius: 4px;
 }
 .categories {
   text-align: center;
-  border: 2px solid white;
   margin: 25px;
   border-radius: 4px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  
 }
 
 .individualTask {
-  border: 2px solid white;
+  /* box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2); */
   font-size: 14px;
   width: 300px;
   border-radius: 4px;
   padding: 10px;
   margin: 10px;
   text-align: left;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.individualTask:hover {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25), 0 2px 10px rgba(0,0,0,0.22);
 }
 
 .gitLogo {
@@ -89,13 +95,14 @@ button:hover {
 }
 
 .individualProject {
-  border: 2px solid white;
+  /* border: 2px solid white; */
   font-size: 18px;
   width: 250px;
   height: 150px;
   border-radius: 4px;
   padding: 10px;
   font-size: 16px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
 
 .createProject {
@@ -109,6 +116,7 @@ button:hover {
   /* text-align: center; */
   justify-content: center;
   align-content: center;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }
 .createProject:hover{color: black;}
 
@@ -141,6 +149,7 @@ button:hover {
   align-content: space-around;
   justify-content: center;
 }
+
 .projectTitleBar {
   display: flex;
   justify-content: space-between;

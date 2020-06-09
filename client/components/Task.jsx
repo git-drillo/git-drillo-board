@@ -10,14 +10,13 @@ import React from 'react';
 function Task(props) {
   let taskStyling = {};
   if (props.taskInformation.pending) {
-    taskStyling = { border: 'thin solid red' };
+    taskStyling = { border: ' solid lightblue' };
   } else {
-    taskStyling = { border: 'thin solid black' };
+    taskStyling = {};
   }
 
-  const { editTask, taskInformation } = props;
+  const { editTask, taskInformation, approve } = props;
   const { task, tag, assignedDev, commitMsg, commitUrl } = taskInformation;
-
   return (
     <div className="individualTask" style={taskStyling}>
       <p> Task: {task} </p>
@@ -25,7 +24,9 @@ function Task(props) {
       <p> AssignedDev: {assignedDev} </p>
       <p> Commit: {commitMsg} </p>
       <p> CommitUrl: {commitUrl} </p>
-      <button onClick={editTask}> edit </button>
+      <button onClick={editTask}> Edit </button>
+      {props.taskInformation.pending ? <button onClick={approve}> Approve </button> : null}
+  
     </div>
   );
 }

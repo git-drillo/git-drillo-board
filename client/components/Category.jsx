@@ -10,17 +10,18 @@ import Task from './Task.jsx';
 import NewTaskPopUp from './NewTaskPopUp.jsx'
 
 function Category(props) {
-  const { categoryName, createTask, array, editTask, popUpToggle, createNewTask } = props;
+  const { categoryName, createTask, array, editTask, popUpToggle, createNewTask, approve } = props;
   const renderedTasksArray = [];
   for (let i = 0; i < array.length; i++) {
     let task = array[i];
-    renderedTasksArray.push(<Task key={i} taskInformation={task} editTask={editTask} />);
+    renderedTasksArray.push(<Task key={i} taskInformation={task} editTask={editTask} approve={approve} />);
   }
   return (
     <div className="categories">
       <h4>{categoryName}</h4>
       {renderedTasksArray}
-      <button onClick={createNewTask}> + Add another card </button>
+      {categoryName !== "Done" ? <button onClick={createNewTask}> + Add another card </button> : null}
+      
       {props.popUpToggle ?
          <NewTaskPopUp
           closePopUp={props.createNewTask} /> : null}
