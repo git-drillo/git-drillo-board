@@ -65,6 +65,8 @@ router.post(
   '/create-project',
   // middleware
   /*dbController.getUserFromUserIdCookie,*/ async (req, res) => {
+    console.log('hitting create-project')
+    res.send('hello')
     try {
       // Temporary hardcoded user id -> waiting to test with the actual browser cookies
       // const userId = '14e33237-9cbb-43d3-9332-2e5641d712fb';
