@@ -5,6 +5,7 @@ const authController = {};
  * @desc    Saves access token from cookies to res.locals.accessToken
  */
 authController.getAccessToken = (req, res, next) => {
+  console.log('in get access token')
   const { accessToken } = req.cookies;
   res.locals.accessToken = accessToken;
   next();

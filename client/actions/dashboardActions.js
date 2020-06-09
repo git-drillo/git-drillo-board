@@ -29,8 +29,11 @@ export function getProjects() {
  * @param {object} repo
  */
 export function submitProject() {
+  console.log('in action creator');
   return function (dispatch, getState) {
-    const { repo } = getState().project;
+    const { repo } = getState().dashboard;
+    console.log(getState().dashboard);
+    console.log('repo', repo);
     axios
       .post(`/api/create-project`, { repo })
       .then(() =>

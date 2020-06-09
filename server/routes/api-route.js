@@ -8,6 +8,11 @@ const taskController = require('../controllers/taskController.js');
 const authController = require('../controllers/authController.js');
 const projectController = require('../controllers/projectController.js');
 
+
+router.get('/', (req, res) => {
+  res.send('hello!')
+})
+
 /**
  * @route   GET /api/projects/
  * @desc    Returns an array of projects associated with a particular user
@@ -118,7 +123,7 @@ router.post(
         collaborators,
       });
     } catch ({ message }) {
-      res.status(400).json({
+      res.status(418).json({
         log: 'Something went wrong in POST /api/project route',
         message,
       });
