@@ -7,7 +7,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { getProjects, createProject } from '../actions/dashboardActions';
+import { getProjects/*, createProject */} from '../actions/dashboardActions';
 import Dashboard from '../components/Dashboard.jsx';
 import TitleBar from '../components/TitleBar.jsx';
 
@@ -51,7 +51,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getProjects: () => dispatch(getProjects()),
-  createProject: () => dispatch(createProject()),
+  // createProject: () => dispatch(createProject()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardContainer);

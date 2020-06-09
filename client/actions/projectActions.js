@@ -1,5 +1,13 @@
 import axios from 'axios';
-import { GET_PROJECT_TASKS, CREATE_TASK, REFRESH_TASKS, DELETE_TASK } from './types';
+import {
+  GET_PROJECT_TASKS,
+  CREATE_TASK,
+  REFRESH_TASKS,
+  DELETE_TASK,
+  SET_PROJECT,
+  CLEAR_PROJECT,
+  SUBMIT_PROJECT,
+} from './types';
 
 /**
  * Retrieves all tasks associated with a particular project divided in two arrays: in progress and done
@@ -22,10 +30,9 @@ export function getProjectTasks(id) {
 /**
  * Create a new task for a project
  * @param {number} id The project id
+ * @param {object} task The assigned task with assignedDev, nickname, and description
  */
 export function createTask(id, task) {
-  console.log('creating task');
-  return;
   return function (dispatch) {
     axios
       .post(`/api/tasks/${id}`, task)
@@ -40,7 +47,7 @@ export function createTask(id, task) {
 }
 
 /**
- * Refresh tasks to reflect updated statuses of each task 
+ * Refresh tasks to reflect updated statuses of each task
  * (Hits same endpoint as GET_PROJECT_TASKS)
  * @param {number} id The project id
  */
@@ -97,3 +104,4 @@ export function editTask(id) {
       .catch(err => console.log(err));
   };
 }
+

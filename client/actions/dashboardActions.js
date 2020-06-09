@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_PROJECTS } from './types';
+import { GET_PROJECTS, CREATE_PROJECT, SET_PROJECT, CLEAR_PROJECT } from './types';
 
 /**
  * Retrieves all projects associated with a particular user
@@ -10,11 +10,10 @@ export function getProjects() {
     axios
       .get(`/api/projects`)
       .then(result => {
-        // console.log(result)
         dispatch({
           type: GET_PROJECTS,
           payload: result.data,
-        })
+        });
       })
       .catch(({ message }) =>
         console.log({
@@ -26,23 +25,35 @@ export function getProjects() {
 }
 
 /**
- * Creates a project
+ * Creates a project from an existing Github repo
+ * @param {object} repo
  */
-export function createProject() {
-  return function (dispatch) {
-    axios.post()
-  }
+export function submitProject() {
+  console.log('in action creator');
+  return function (dispatch, getState) {
+    const { repo } = getState().dashboard;
+    console.log(getState().dashboard);
+    console.log('repo', repo);
+    axios
+      .post(`/api/create-project`, { repo })
+      .then(() =>
+        dispatch({
+          type: CLEAR_PROJECT,
+        })
+      )
+      .catch(err => console.log('ERROR IN SUBMIT_PROJECT', err));
+  };
 }
 
-// Route: /dashboard
-// Route /projectboard
-// landing page is landing page container
-
-// get existing repos
-
-// get existing collaborators for existing repo
-
-// redirecting
+/**
+ *
+ */
+export function setProject(changes) {
+  return {
+    type: SET_PROJECT,
+    payload: changes,
+  };
+}
 
 // Retrieves pending projects? - stretch maybe
 // export function getPending(id) {

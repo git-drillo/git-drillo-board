@@ -1,13 +1,13 @@
-const passport = require('passport');
-require('dotenv').config();
+const passport = require("passport");
+require("dotenv").config();
 
-const GithubStrategy = require('passport-github2');
+const GithubStrategy = require("passport-github2");
 
 const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } = process.env;
 
-const db = require('../db/postgres.js');
+const db = require("../db/postgres.js");
 
-const fetch = require('node-fetch');
+const fetch = require("node-fetch");
 
 // Configure the Github strategy for use by Passport.
 //
@@ -26,7 +26,7 @@ passport.use(
       //will be given through API. used to identify our app to github
       clientSecret: GITHUB_CLIENT_SECRET,
       //callback url that sends client to github login page
-      callbackURL: '/auth/github/callback',
+      callbackURL: "/auth/github/callback",
     },
     (accessToken, refreshToken, profile, done) => {
       //basic 4 params -> getting github profile information from auth-route
@@ -56,7 +56,7 @@ passport.use(
       const body = { accessToken };
 
       db.query(selectQuery)
-        .then(data => {
+        .then((data) => {
           // User exists in database
           if (data.rows.length) {
             body.userId = data.rows[0].id;
@@ -65,13 +65,13 @@ passport.use(
 
           // User does not exist, add user to database
           db.query(insertQuery, [username])
-            .then(user => {
+            .then((user) => {
               body.userId = user.rows[0].id;
               return done(null, body);
             })
-            .catch(err => console.log('INSERT QUERY', err));
+            .catch((err) => console.log("INSERT QUERY", err));
         })
-        .catch(err => console.log('SELECT QUERY', err));
+        .catch((err) => console.log("SELECT QUERY", err));
     }
   )
 );
@@ -90,7 +90,7 @@ passport.serializeUser(function (user, done) {
 
 passport.deserializeUser(function (obj, done) {
   const findUserQuery = `SELECT * FROM users WHERE id = $1`;
-  db.query(findUserQuery, [id]).then(user => {
+  db.query(findUserQuery, [id]).then((user) => {
     done(null, user); // done is used to progress to the next middleware
   });
 });
