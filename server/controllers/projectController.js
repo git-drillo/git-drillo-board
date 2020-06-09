@@ -9,19 +9,9 @@ const projectController = {};
  * @desc    Gets a list of respositories accessible to the user and saves it to res.locals.repos
  */
 projectController.getRepos = (req, res, next) => {
-  console.log('in get repos')
   const { accessToken } = res.locals;
   const { username } = res.locals;
-
-  // var config = {
-  //   method: 'get',
-  //   url: 'https://api.github.com/users/ronellecaguioa/repos',
-  //   headers: { 
-  //     'Authorization': 'token a6a6a891f507edfafcee1c70f4a74d7153e3e103', 
-  //     'Content-Type': 'application/json'
-  //   },
-  //   data : data
-  // };
+  
 
   fetch(`https://api.github.com/users/${username}/repos`, {
     method: 'get',
@@ -32,7 +22,6 @@ projectController.getRepos = (req, res, next) => {
   })
     .then(res => res.json())
     .then(data => {
-      console.log('IN FETCH FOR REPOS =>>', data)
       res.locals.allRepos = [...data];
       next();
     })
@@ -44,28 +33,29 @@ projectController.getRepos = (req, res, next) => {
  * @desc    Saves whether or not repo exists in list of accesible repos to res.locals.repoExists
  */
 projectController.doesRepoExist = (req, res, next) => {
-  console.log('in does exist')
   // console.log("LOCALS", res.locals)
   // res.locals.repoExists - boolean
   const { repo: targetRepo } = req.body;
   const { allRepos: repoList } = res.locals;
-  // console.log('destruct:::', repoList)
-  // console.log('destruct:::', targetRepo)
 
   // loop through array of repos. check if targetRepo appears as repo name
+  // console.log('TARGET', targetRepo)
   for (let i = 0; i < repoList.length; i++) {
     if (repoList[i].name == targetRepo) {
+      // console.log('does EXIST')
+      // console.log('repoList exist', repoList[i].name)
       // set repoExists to true
       res.locals.repoExists = true;
       // save repo object in res.locals.targetRepo
-      res.locals.targetRepo = targetRepo;
-    } else {
-      // if the repo doesn't exist,
-      res.locals.repoExists = false;
-      status(400).json({ isCreated: isCreated });
-    }
+      res.locals.targetRepo = repoList[i];
+      return next()
+    } 
   }
-  next();
+  // console.log('repoList not exist', repoList[i].name)
+  // console.log('does not EXIST')
+  // if the repo doesn't exist,
+  res.locals.repoExists = false;
+  res.status(400).json({ isCreated: isCreated });
 };
 
 /**
@@ -73,12 +63,12 @@ projectController.doesRepoExist = (req, res, next) => {
  * @desc    Saves the repository owner for a repository accessible to the current user
  */
 projectController.getRepoOwner = (req, res, next) => {
-  console.log('in repo owner')
   // save the owner from the res.locals.targetRepo into res.locals.owner
   const { targetRepo } = res.locals;
+  // console.log('TARGET',targetRepo=)
 
   const owner = targetRepo.owner.login;
-  console.log('owner ===>', owner)
+  
   res.locals.owner = owner;
 
   next();
@@ -89,7 +79,6 @@ projectController.getRepoOwner = (req, res, next) => {
  * @desc    Saves the collaborators on a given project in an array on res.locals.collaborators
  */
 projectController.getCollaborators = (req, res, next) => {
-  console.log('in get collaborators')
   const { accessToken } = res.locals;
   const { owner } = res.locals;
   const { selectedRepo: repo } = res.locals;
