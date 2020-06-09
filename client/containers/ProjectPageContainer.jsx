@@ -16,7 +16,7 @@ class ProjectPageContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      projectName: 'the ultimate foobar project',
+      projectName: 'Your SCRUM board',
       newTaskPopUp: false,
     }
   }

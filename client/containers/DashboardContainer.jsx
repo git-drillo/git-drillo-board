@@ -19,7 +19,7 @@ class DashboardContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userName: 'fizzbuzz',
+      userName: 'Your projects',
       createNewProjectPopUp: false,
     }
   }
