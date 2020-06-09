@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+const fetch = require('node-fetch');
 
 const projectController = {};
 
@@ -13,15 +13,15 @@ projectController.getRepos = (req, res, next) => {
   const { username } = res.locals;
 
   fetch(`https://api.github.com/users/${username}/repos`, {
-    method: "get",
+    method: 'get',
     params: { access_token: accessToken },
   })
-    .then((res) => res.json())
-    .then((data) => {
+    .then(res => res.json())
+    .then(data => {
       res.locals.allRepos = [...data];
       next();
     })
-    .catch((err) => console.log("ERROR: ", err));
+    .catch(err => console.log('ERROR: ', err));
 };
 
 /**
@@ -74,11 +74,11 @@ projectController.getCollaborators = (req, res, next) => {
   const collaborators = [];
 
   fetch(`https://api.github.com/repos/${owner}/${repo}/collaborators`, {
-    method: "get",
+    method: 'get',
     params: { access_token: accessToken },
   })
-    .then((res) => res.json())
-    .then((data) => {
+    .then(res => res.json())
+    .then(data => {
       // loop through the data and save all values for login to an array
       for (let i = 0; i < data.length; i++) {
         const githandle = data[i].login;
@@ -89,5 +89,7 @@ projectController.getCollaborators = (req, res, next) => {
       res.locals.collaborators = collaborators;
       next();
     })
-    .catch((err) => console.log("ERROR: ", err));
+    .catch(err => console.log('ERROR: ', err));
 };
+
+module.exports = projectController;
