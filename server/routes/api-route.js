@@ -67,10 +67,10 @@ router.post(
   "/create-project",
   dbController.getUserFromUserIdCookie,
   authController.getAccessToken,
-  // projectController.getRepos,
-  // projectController.doesRepoExist,
-  // projectController.getRepoOwner,
-  // projectController.getCollaborators,
+  projectController.getRepos,
+  projectController.doesRepoExist,
+  projectController.getRepoOwner,
+  projectController.getCollaborators,
   async (req, res) => {
     try {
       // Temporary hardcoded user id -> waiting to test with the actual browser cookies
