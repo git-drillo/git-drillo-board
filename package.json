@@ -47,7 +47,7 @@
     "file-loader": "^6.0.0",
     "image-webpack-loader": "^6.0.0",
     "imagemin-webp": "^6.0.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.7",
     "nodemon": "^2.0.4",
     "style-loader": "^1.2.1",
     "webpack": "^4.43.0",
